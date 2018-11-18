@@ -1,0 +1,21 @@
+.testimonial-card .avatar{
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  width: 120px;
+  margin-top: -65px;
+  overflow: hidden;
+  border: 5px solid #fff;
+}
+
+.testimonial-card .avatar img{
+  width: 100%;
+}
+
+.testimonial-card .card-up{
+  overflow: hidden;
+  height: 120px;
+  -webkit-border-top-left-radius: .25rem;
+  border-top-left-radius: .25rem;
+  -webkit-border-top-right-radius: .25rem;
+  border-top-right-radius: .25rem;
+}

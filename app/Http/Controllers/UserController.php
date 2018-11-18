@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
+use Yajra\Datatables\Datatables;
 use App\User;
 use DB;
 use Hash;
@@ -60,7 +61,13 @@ class UserController extends Controller
 
 
         return redirect()->route('users.index')
-                        ->with('success','User created successfully');
+            ->with(
+                'success',
+                __(
+                    'messages.common_crud.created.success_message',
+                    ['name' => ucfirst(__('messages.users.user'))]
+                )
+            );
     }
 
     /**
@@ -125,7 +132,7 @@ class UserController extends Controller
 
 
         return redirect()->route('users.index')
-                        ->with('success','User updated successfully');
+            ->with('success','User updated successfully');
     }
 
     /**
@@ -138,6 +145,24 @@ class UserController extends Controller
     {
         User::find($id)->delete();
         return redirect()->route('users.index')
-                        ->with('success','User deleted successfully');
+            ->with(
+                'success',
+                __(
+                    'messages.common_crud.delete_title',
+                    ['name' => __('messages.users.user')])
+            );
+    }
+
+    // datatables functions
+    public function getUsers()
+    {
+        return Datatables::of(User::query())
+            ->addColumn('action', function($user) {
+                return view(
+                    'users.partials.accions', compact('user')
+                );
+            })
+            ->rawColumns(['action'])
+            ->make(true);
     }
 }

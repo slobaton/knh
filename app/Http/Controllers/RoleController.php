@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use Yajra\Datatables\Datatables;
 use DB;
 
 class RoleController extends Controller
@@ -70,7 +71,9 @@ class RoleController extends Controller
     public function show($id)
     {
         $role = Role::find($id);
-        $rolePermissions = Permission::join("role_has_permissions","role_has_permissions.permission_id","=","permissions.id")
+        $rolePermissions = Permission::join(
+            "role_has_permissions","role_has_permissions.permission_id","=","permissions.id"
+            )
             ->where("role_has_permissions.role_id",$id)
             ->get();
 
@@ -133,6 +136,19 @@ class RoleController extends Controller
     {
         DB::table("roles")->where('id',$id)->delete();
         return redirect()->route('roles.index')
-                        ->with('success','Role deleted successfully');
+            ->with('success','Role deleted successfully');
+    }
+
+    // datatables functions
+    public function getRoles()
+    {
+        return Datatables::of(Role::query())
+            ->addColumn('action', function($role) {
+                return view(
+                    'roles.partials.actions', compact('role')
+                );
+            })
+            ->rawColumns(['action'])
+            ->make(true);
     }
 }

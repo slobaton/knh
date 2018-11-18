@@ -1,0 +1,14 @@
+.navbar-dark .navbar-nav .nav-link {
+  color:white;
+  border-radius: 10px;
+}
+
+.nav-link.active {
+  color:white;
+  background-color: rgba(255,255,255,.1);
+}
+
+.dropdown-item:focus, .dropdown-item:hover{
+  background-color: #5c6bc0;
+  color: #ffffff;
+}

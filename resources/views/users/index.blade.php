@@ -1,55 +1,68 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="row">
-    <div class="col-lg-12 margin-tb">
-        <div class="pull-left">
-            <h2>Users Management</h2>
-        </div>
-        <div class="pull-right">
-            <a class="btn btn-success" href="{{ route('users.create') }}"> Create New User</a>
-        </div>
-    </div>
-</div>
-
+<h5 class="text-center">{{ strtoupper(__('messages.users.users')) }}</h5>
+<hr>
 @if ($message = Session::get('success'))
 <div class="alert alert-success">
   <p>{{ $message }}</p>
 </div>
 @endif
-
-
-<table class="table table-bordered">
+<div class="row">
+  <div class="col-lg-12 margin-tb">
+    <div class="float-right">
+      <a
+        class="btn btn-primary"
+        href="{{ route('users.create') }}"
+      >
+        <i class="fas fa-user-plus"></i>
+        {{ __('messages.common.create', ['name' => __('messages.users.user')]) }}
+      </a>
+    </div>
+  </div>
+</div>
+<br>
+<table id="datatable" class="table table-striped table-bordered" style="width:100%">
+  <thead>
   <tr>
-    <th>No</th>
-    <th>Name</th>
-    <th>Email</th>
-    <th>Roles</th>
-    <th width="280px">Action</th>
+    <th>ID</th>
+    <th>{{ __('messages.users.name') }}</th>
+    <th>{{ __('messages.login.email') }}</th>
+    <th>{{ __('messages.common.created_at') }}</th>
+    <th>{{ __('messages.common.accions') }}</th>
   </tr>
-
- @foreach ($data as $key => $user)
-  <tr>
-    <td>{{ ++$i }}</td>
-    <td>{{ $user->name }}</td>
-    <td>{{ $user->email }}</td>
-    <td>
-      @if(!empty($user->getRoleNames()))
-        @foreach($user->getRoleNames() as $v)
-           <label class="badge badge-success">{{ $v }}</label>
-        @endforeach
-      @endif
-    </td>
-    <td>
-       <a class="btn btn-info" href="{{ route('users.show',$user->id) }}">Show</a>
-       <a class="btn btn-primary" href="{{ route('users.edit',$user->id) }}">Edit</a>
-        {!! Form::open(['method' => 'DELETE','route' => ['users.destroy', $user->id],'style'=>'display:inline']) !!}
-            {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
-        {!! Form::close() !!}
-    </td>
-  </tr>
- @endforeach
+  </thead>
 </table>
-
-{!! $data->render() !!}
+@php
+  $modalTile = __(
+      'messages.common_crud.confirm_message',
+      ['name' => __('messages.users.user')]
+  );
+@endphp
+@component('components.datatable', [
+  'modalTitle' => $modalTile,
+  'route' => 'users.data',
+  'order' => [[0, 'desc']],
+  'columns' => [
+  [
+    'data' => 'id',
+    'name' => 'id',
+  ], [
+    'data' => 'name',
+    'name' => 'name',
+  ], [
+    'data' => 'email',
+    'name' => 'email',
+  ], [
+    'data' => 'created_at',
+    'name' => 'created_at',
+  ], [
+    'data' => 'action',
+    'name' => 'action',
+    'orderable' => false,
+    'searchable' => false
+  ]
+  ]
+])
+@endcomponent
 @endsection

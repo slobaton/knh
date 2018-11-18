@@ -1,41 +1,33 @@
 @extends('layouts.app')
 
-
 @section('content')
-<div class="row">
-    <div class="col-lg-12 margin-tb">
-        <div class="pull-left">
-            <h2> Show User</h2>
-        </div>
-        <div class="pull-right">
-            <a class="btn btn-primary" href="{{ route('users.index') }}"> Back</a>
-        </div>
-    </div>
-</div>
+<h5 class="text-center">{{ strtoupper(__('messages.users.show')) }}</h5>
+<hr>
 
-
-<div class="row">
+  @component('components.form', ['title' => __('messages.users.description'), 'col' => '10'])
+  <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12">
-        <div class="form-group">
-            <strong>Name:</strong>
-            {{ $user->name }}
-        </div>
+      <div class="form-group">
+        <strong>{{ __('messages.users.name').': ' }}</strong>
+        {{ $user->name }}
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12">
+      <div class="form-group">
+        <strong>{{ __('messages.login.email').': ' }}</strong>
+        {{ $user->email }}
+      </div>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
-            <strong>Email:</strong>
-            {{ $user->email }}
-        </div>
-    </div>
-    <div class="col-xs-12 col-sm-12 col-md-12">
-        <div class="form-group">
-            <strong>Roles:</strong>
+            <strong>{{ __('messages.users.roles').': ' }}</strong>
             @if(!empty($user->getRoleNames()))
                 @foreach($user->getRoleNames() as $v)
-                    <label class="badge badge-success">{{ $v }}</label>
+                    <label class="badge badge-secondary">{{ $v }}</label>
                 @endforeach
             @endif
         </div>
     </div>
-</div>
+  </div>
+  @endcomponent
 @endsection

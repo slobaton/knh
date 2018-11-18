@@ -19,6 +19,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => ['auth']], function() {
     Route::resource('roles','RoleController');
+    Route::get('roles.data', 'RoleController@getRoles')
+    ->name('roles.data');
     Route::resource('users','UserController');
-    // Route::resource('products','ProductController');
+    Route::get('users.data', 'UserController@getUsers')
+    ->name('users.data');
 });

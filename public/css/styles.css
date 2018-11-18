@@ -1,0 +1,11 @@
+body {
+  background-color: rgba(248, 250, 252, 0.8);
+}
+
+hr {
+  max-width: 15em;
+}
+
+.card-header {
+  background-color: rgba(0,0,0,0.07);
+}
