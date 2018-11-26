@@ -43,11 +43,24 @@ return [
         'create' => 'New :name',
         'created_at' => 'Created at',
         'accions'    => 'Accions',
-        'updated_at' => 'Last updated'
+        'updated_at' => 'Last updated',
+        'home' => 'Home',
+        'city' => 'City',
+        'phone' => 'Phone',
+        'cellphone' => 'Cellphone',
+        'location' => 'Location',
     ],
 
     'navbar' => [
         'users' => 'Manage Users',
         'roles' => 'Manage Role'
+    ],
+
+    'partners' => [
+        'plural' => 'partners',
+        'singular'=> 'partner',
+        'breadcrumbs' => [
+            'create' => 'New partner',
+        ],
     ],
 ];

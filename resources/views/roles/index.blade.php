@@ -27,7 +27,7 @@
   <thead>
     <tr>
      <th>No</th>
-     <th>Name</th>
+     <th>Rol</th>
      <th width="280px">Action</th>
     </tr>
   </thead>

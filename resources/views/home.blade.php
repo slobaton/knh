@@ -4,6 +4,10 @@
   <link rel="stylesheet" href={{ asset('css/home.css') }}>
 @endsection
 
+@section('breadcrumbs')
+{{ Breadcrumbs::render('home') }}
+@endsection
+
 @section('content')
 <div class="container">
   <div class="row">

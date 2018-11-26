@@ -91,7 +91,8 @@ class RoleController extends Controller
     {
         $role = Role::find($id);
         $permission = Permission::get();
-        $rolePermissions = DB::table("role_has_permissions")->where("role_has_permissions.role_id",$id)
+        $rolePermissions = DB::table("role_has_permissions")
+            ->where("role_has_permissions.role_id", $id)
             ->pluck('role_has_permissions.permission_id','role_has_permissions.permission_id')
             ->all();
 
@@ -113,11 +114,9 @@ class RoleController extends Controller
             'permission' => 'required',
         ]);
 
-
         $role = Role::find($id);
         $role->name = $request->input('name');
         $role->save();
-
 
         $role->syncPermissions($request->input('permission'));
 
@@ -143,6 +142,7 @@ class RoleController extends Controller
     public function getRoles()
     {
         return Datatables::of(Role::query())
+            ->addIndexColumn()
             ->addColumn('action', function($role) {
                 return view(
                     'roles.partials.actions', compact('role')

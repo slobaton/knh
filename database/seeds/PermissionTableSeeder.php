@@ -29,7 +29,7 @@ class PermissionTableSeeder extends Seeder
         }
 
         //Admin
-        $admin = Role::create(['name' => 'Admin']);
+        $admin = Role::create(['name' => 'admin']);
 
         $admin->givePermissionTo([
             'role-list',
@@ -40,6 +40,6 @@ class PermissionTableSeeder extends Seeder
         ]);
 
         $user = User::find(1); //Sergio Lobaton
-        $user->assignRole('Admin');
+        $user->assignRole('admin');
     }
 }

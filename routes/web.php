@@ -18,10 +18,18 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => ['auth']], function() {
+    //roles
     Route::resource('roles','RoleController');
     Route::get('roles.data', 'RoleController@getRoles')
-    ->name('roles.data');
+        ->name('roles.data');
+
+    //users
     Route::resource('users','UserController');
     Route::get('users.data', 'UserController@getUsers')
-    ->name('users.data');
+        ->name('users.data');
+
+    //partners
+    Route::resource('partners','PartnerController');
+    Route::get('partners.data', 'PartnerController@getPartners')
+        ->name('partners.data');
 });

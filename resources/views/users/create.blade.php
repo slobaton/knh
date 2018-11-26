@@ -1,6 +1,5 @@
 @extends('layouts.app')
 
-
 @section('content')
   <h5 class="text-center">
     {{ strtoupper(__('messages.common_crud.created.title', ['name' => __('messages.users.user')])) }}
