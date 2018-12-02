@@ -1,9 +1,17 @@
 @extends('layouts.app')
 
-@section('content')
-<h5 class="text-center">{{ strtoupper(__('messages.users.show')) }}</h5>
-<hr>
+@php
+    $title = strtoupper(__('messages.users.show'));
+@endphp
 
+@component('partials.custombreadcrumbs', [
+    'icon' => 'fas fa-user',
+    'title' => $title,
+    'breadcrumb' => 'users.show'
+])
+@endcomponent
+
+@section('content')
   @component('components.form', ['title' => __('messages.users.description'), 'col' => '10'])
   <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12">

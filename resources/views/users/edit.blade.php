@@ -1,9 +1,17 @@
 @extends('layouts.app')
 
-@section('content')
-  <h5 class="text-center">{{ strtoupper(__('editar usuario')) }}</h5>
-  <hr>
+@php
+    $title = strtoupper(__('editar usuario'));
+@endphp
 
+@component('partials.custombreadcrumbs', [
+    'icon' => 'fas fa-user-edit',
+    'title' => $title,
+    'breadcrumb' => 'users.edit'
+])
+@endcomponent
+
+@section('content')
   @component('components.form', ['title' => 'Formulario', 'col' => '10'])
   @if (count($errors) > 0)
     <div class="alert alert-danger">

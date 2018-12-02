@@ -1,10 +1,17 @@
 @extends('layouts.app')
 
+@php
+    $title = strtoupper(__('messages.common_crud.created.title', ['name' => __('messages.users.user')]));
+@endphp
+
+@component('partials.custombreadcrumbs', [
+    'icon' => 'fas fa-user-plus',
+    'title' => $title,
+    'breadcrumb' => 'users.create'
+])
+@endcomponent
+
 @section('content')
-  <h5 class="text-center">
-    {{ strtoupper(__('messages.common_crud.created.title', ['name' => __('messages.users.user')])) }}
-  </h5>
-  <hr>
   @component('components.form', ['title' => 'Formulario', 'col' => '10'])
     @if (count($errors) > 0)
       <div class="alert alert-danger">

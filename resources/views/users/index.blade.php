@@ -1,8 +1,17 @@
 @extends('layouts.app')
 
+@php
+    $title = __('messages.users.users');
+@endphp
+
+@component('partials.custombreadcrumbs', [
+    'icon' => 'fas fa-users',
+    'title' => $title,
+    'breadcrumb' => 'users.index'
+])
+@endcomponent
+
 @section('content')
-<h5 class="text-center">{{ strtoupper(__('messages.users.users')) }}</h5>
-<hr>
 @if ($message = Session::get('success'))
 <div class="alert alert-success">
   <p>{{ $message }}</p>
