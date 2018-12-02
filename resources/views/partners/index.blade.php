@@ -1,15 +1,19 @@
 @extends('layouts.app')
 
-@section('breadcrumbs')
-{{ Breadcrumbs::render('partners.index') }}
-@endsection
+@component('partials.custombreadcrumbs', [
+    'icon' => 'far fa-handshake',
+    'title' => 'SOCIOS',
+    'breadcrumb' => 'partners.index'
+])
+@endcomponent
 
 @section('content')
-<h5 class="text-center">{{ strtoupper(__('messages.partners.plural')) }}</h5>
-<hr>
 @if ($message = Session::get('success'))
-<div class="alert alert-success">
-  <p>{{ $message }}</p>
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+    <p>{{ $message }}</p>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
 </div>
 @endif
 <div class="container">

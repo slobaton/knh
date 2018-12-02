@@ -51,18 +51,15 @@
         </div>
         <div class="col-xs-12 col-sm-12 col-md-6">
             <strong>{{ __('Fotografía: ') }} :</strong>
-            <div class="custom-file form-group">
-                <input type="file" class="custom-file-input" id="partnerImage">
-                <label class="custom-file-label" for="partnerImage">
-                    {{ __('Subir fotografía') }}
-                </label>
+            <div class="form-group">
+                <input type="file" id="partnerImage" name="photo">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-6">
                 <div class="form-group">
             <strong>{{ __('Telefono celular:') }}</strong>
             {!!
-                Form::text(
+                Form::number(
                     'cellphone',
                     null,
                     array(

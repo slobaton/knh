@@ -1,16 +1,23 @@
 @extends('layouts.app')
 
-@section('breadcrumbs')
-{{ Breadcrumbs::render('partners.edit') }}
-@endsection
+@php
+    $title = strtoupper(__('editar socio'))
+@endphp
 
+@component('partials.custombreadcrumbs', [
+    'icon' => 'far fa-handshake',
+    'title' => $title,
+    'breadcrumb' => 'partners.edit'
+])
+@endcomponent
 
 @section('content')
-    <h5 class="text-center">{{ strtoupper(__('editar socio')) }}</h5>
-    <hr>
     @if ($message = Session::get('success'))
-    <div class="alert alert-success">
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
         <p>{{ $message }}</p>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
     </div>
     @endif
   @component('components.form', ['title' => 'Formulario', 'col' => '10'])
@@ -27,7 +34,11 @@
     {!!
         Form::model(
             $partner,
-            ['method' => 'PATCH', 'route' => ['partners.update', $partner->partner_id]]
+            [
+                'method' => 'PATCH',
+                'route' => ['partners.update', $partner->partner_id],
+                'files' => true
+            ]
         )
     !!}
         @include('partners.partials.form')

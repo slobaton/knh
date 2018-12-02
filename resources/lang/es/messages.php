@@ -11,7 +11,10 @@ return [
         ],
         'error' => [
             'general' => 'Hay algunos problemas con tus campos.',
-        ] 
+        ],
+        'new' => 'nuevo :name',
+        'edit' => 'editar :name',
+        'show' => 'descripción del :name'
     ],
 
     'login' => [
@@ -61,6 +64,8 @@ return [
         'singular'=> 'socio',
         'breadcrumbs' => [
             'create' => 'Nuevo socio',
+            'edit' => 'Editar socio',
+            'show' => 'Descripción del socio',
         ],
     ],
 ];

@@ -4,9 +4,16 @@
   <link rel="stylesheet" href={{ asset('css/home.css') }}>
 @endsection
 
-@section('breadcrumbs')
-{{ Breadcrumbs::render('home') }}
-@endsection
+@php
+    $title = __('messages.common.home');
+@endphp
+
+@component('partials.custombreadcrumbs', [
+    'icon' => 'fas fa-home',
+    'title' => $title,
+    'breadcrumb' => 'home'
+])
+@endcomponent
 
 @section('content')
 <div class="container">

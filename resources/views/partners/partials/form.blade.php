@@ -37,7 +37,7 @@
       <div class="form-group">
         <strong>{{ __('messages.common.phone') }} :</strong>
         {!!
-          Form::text(
+          Form::number(
             'partner_phone',
             null,
             array(
@@ -72,26 +72,29 @@
         <div class="form-group">
             <strong>{{ __('messages.common.city') }} :</strong>
             {!!
-          Form::select(
-              'partner_city',
-            Config::get('constants.bolivia_cities'),
-            null,
-            [
-                'placeholder' => '-- Escoja una ciudad --',
-                'class' => 'custom-select',
-                'required' => 'required'
-                ]
+                Form::select(
+                  'partner_city',
+                  Config::get('constants.bolivia_cities'),
+                  null,
+                  [
+                    'placeholder' => '-- Escoja una ciudad --',
+                    'class' => 'custom-select',
+                    'required' => 'required'
+                  ]
                 )
-                !!}
+            !!}
       </div>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-6">
-            <strong>{{ __('Fotografía: ') }} :</strong>
-        <div class="custom-file form-group">
-            <input type="file" class="custom-file-input" id="partnerImage">
-            <label class="custom-file-label" for="partnerImage">
-                {{ __('Subir fotografía') }}
-            </label>
+        <strong>{{ __('Fotografía: ') }} :</strong>
+        <div class="form-group">
+            <input
+              type="file"
+              id="partnerImage"
+              name="partner_photo"
+              lang="es"
+              accept=".jpg,.gif,.png,.pdf,.jpeg"
+            >
         </div>
     </div>
 </div>
