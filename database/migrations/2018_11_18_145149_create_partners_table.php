@@ -20,6 +20,7 @@ class CreatePartnersTable extends Migration
             $table->string('partner_phone', 15)->nullable();
             $table->string('partner_location', 350)->nullable();
             $table->string('partner_city')->nullable();
+            $table->string('partner_photo')->nullable();
             $table->timestamps();
         });
     }
