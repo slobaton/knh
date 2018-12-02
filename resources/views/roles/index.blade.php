@@ -1,8 +1,18 @@
 @extends('layouts.app')
 
+@php
+    $title = strtoupper(__('messages.roles.roles'))
+@endphp
+
+@component('partials.custombreadcrumbs', [
+    'icon' => 'fas fa-id-card-alt',
+    'title' => $title,
+    'breadcrumb' => 'roles.index'
+])
+@endcomponent
+
 @section('content')
-<h5 class="text-center">{{ strtoupper(__('messages.roles.roles')) }}</h5>
-<hr>
+
 @if ($message = Session::get('success'))
 <div class="alert alert-success">
   <p>{{ $message }}</p>

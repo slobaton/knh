@@ -1,8 +1,17 @@
 @extends('layouts.app')
 
+@php
+    $title = strtoupper(__('editar rol'))
+@endphp
+
+@component('partials.custombreadcrumbs', [
+    'icon' => 'fas fa-id-card-alt',
+    'title' => $title,
+    'breadcrumb' => 'roles.edit'
+])
+@endcomponent
+
 @section('content')
-  <h5 class="text-center">{{ strtoupper(__('editar rol')) }}</h5>
-  <hr>
   @component('components.form', ['title' => 'Formulario', 'col' => '10'])
     @if (count($errors) > 0)
       <div class="alert alert-danger">
@@ -26,11 +35,14 @@
         <div class="form-group">
           <strong>Permission:</strong>
           <br/>
+          <div class="row">
           @foreach($permission as $value)
+          <div class="col-xs-12 col-md-2">
             <label>{{ Form::checkbox('permission[]', $value->id, in_array($value->id, $rolePermissions) ? true : false, array('class' => 'name')) }}
             {{ $value->name }}</label>
-          <br/>
+          </div>
           @endforeach
+          </div>
         </div>
       </div>
       <div class="col-xs-12 col-sm-12 col-md-12 text-center">

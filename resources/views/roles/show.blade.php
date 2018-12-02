@@ -1,10 +1,17 @@
 @extends('layouts.app')
 
+@php
+    $title = mb_strtoupper(__('messages.roles.show'))
+@endphp
+
+@component('partials.custombreadcrumbs', [
+    'icon' => 'fas fa-id-card-alt',
+    'title' => $title,
+    'breadcrumb' => 'roles.show'
+])
+@endcomponent
 
 @section('content')
-<h5 class="text-center">{{ mb_strtoupper(__('messages.roles.show')) }}</h5>
-<hr>
-
   @component('components.form', ['title' => __('messages.users.description'), 'col' => '10'])
   <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12">
