@@ -14,5 +14,6 @@ class Partner extends Model
         'partner_phone',
         'partner_location',
         'partner_city',
+        'partner_photo',
     ];
 }

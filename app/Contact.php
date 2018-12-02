@@ -15,5 +15,6 @@ class Contact extends Model
         'phone',
         'location',
         'partner_id',
+        'photo'
     ];
 }

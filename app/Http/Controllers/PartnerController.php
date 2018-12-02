@@ -47,12 +47,21 @@ class PartnerController extends Controller
     public function store(Request $request)
     {
         $this->validateFields($request);
-
         try {
             DB::beginTransaction();
-            $partner = Partner::create($request->all());
-
             $inputs = $request->all();
+
+            if($request->file('partner_photo')) {
+                $imagen = $request->file('partner_photo')->store('public/partners');
+                $inputs['partner_photo'] = $imagen;
+            }
+
+            $partner = Partner::create($inputs);
+            if($request->file('photo')) {
+                $imagen = $request->file('photo')->store('public/partners');
+                $inputs['photo'] = $imagen;
+            }
+
             $inputs['partner_id'] = $partner->id;
 
             Contact::create($inputs);
@@ -74,7 +83,17 @@ class PartnerController extends Controller
      */
     public function show($id)
     {
-        //
+        try {
+            $partner = DB::table('partners')
+                ->join('contacts', 'contacts.partner_id', '=','partners.id')
+                ->where('partners.id', '=', $id)
+                ->first();
+        } catch(\Exception $e) {
+            Log::error('Error has ocurred (show partner) - '. $e->getMessage());
+            return back()->with('error', __('Socio no encontrado'));
+        }
+
+        return view('partners.show', compact('partner'));
     }
 
     /**
@@ -91,7 +110,7 @@ class PartnerController extends Controller
                 ->where('partners.id', '=', $id)
                 ->first();
         } catch(\Exception $e) {
-            Log::error('Error has ocurred (store partner) - '. $e->getMessage());
+            Log::error('Error has ocurred (edit partner) - '. $e->getMessage());
             return back()->with('error', __('Socio no encontrado'));
         }
 
@@ -112,8 +131,18 @@ class PartnerController extends Controller
         try {
             DB::beginTransaction();
             $partner = Partner::findOrFail($id);
-            $partner->update($request->all());
             $inputs = $request->all();
+            if($request->file('partner_photo')) {
+                $imagen = $request->file('partner_photo')->store('public/partners');
+                $inputs['partner_photo'] = $imagen;
+            }
+
+            $partner->update($inputs);
+
+            if($request->file('photo')) {
+                $imagen = $request->file('photo')->store('public/partners');
+                $inputs['photo'] = $imagen;
+            }
             $inputs['partner_id'] = $partner->id;
 
             $partner = Contact::where('partner_id', '=', $id)->first();
