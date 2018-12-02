@@ -67,22 +67,32 @@
       </div>
     </div>
 
-    <div class="col-xs-12 col-sm-12 col-md-12">
-      <div class="form-group">
-        <strong>{{ __('messages.common.city') }} :</strong>
-        {!!
+
+    <div class="col-xs-12 col-sm-12 col-md-6">
+        <div class="form-group">
+            <strong>{{ __('messages.common.city') }} :</strong>
+            {!!
           Form::select(
-            'partner_city',
+              'partner_city',
             Config::get('constants.bolivia_cities'),
             null,
             [
-              'placeholder' => '-- Escoja una ciudad --',
-              'class' => 'custom-select',
-              'required' => 'required'
-            ]
-          )
-        !!}
+                'placeholder' => '-- Escoja una ciudad --',
+                'class' => 'custom-select',
+                'required' => 'required'
+                ]
+                )
+                !!}
       </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-6">
+            <strong>{{ __('Fotografía: ') }} :</strong>
+        <div class="custom-file form-group">
+            <input type="file" class="custom-file-input" id="partnerImage">
+            <label class="custom-file-label" for="partnerImage">
+                {{ __('Subir fotografía') }}
+            </label>
+        </div>
     </div>
 </div>
 @include('partners.partials.contact')
