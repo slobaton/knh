@@ -10,5 +10,6 @@ return [
         'bn'   => 'Beni',
         'tj'   => 'Tarija',
         'sc'   => 'Sucre',
+        'alto' => 'El Alto',
     ],
 ];

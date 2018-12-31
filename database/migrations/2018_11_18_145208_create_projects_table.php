@@ -15,9 +15,23 @@ class CreateProjectsTable extends Migration
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('code', 10)->unique();
-            $table->string('name')->unique();
+            $table->string('project_code', 6)->unique();
+            $table->string('project_name');
+            $table->string('coordinator_name');
+            $table->string('coordinator_phone', 8);
+            $table->string('coordinator_cellphone', 8)->nullable();
+            $table->string('coordinator_email');
+            $table->string('location')->nullable();
+            $table->string('city');
+            $table->string('description', 350)->nullable();
+            $table->string('additional_coordinator_info', 350)->nullable();
+            $table->string('created_date');
+            $table->unsignedInteger('partner_id');
             $table->timestamps();
+
+            $table->foreign('partner_id')
+                ->references('id')->on('partners')
+                ->onDelete('cascade');
         });
     }
 

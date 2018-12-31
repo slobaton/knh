@@ -56,6 +56,6 @@ $(function() {
   type="text/javascript"
   src="{{ asset('js/datatables/dataTables.bootstrap4.min.js') }}"
 ></script>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="js/sweetalert/sweetalert.min.js"></script>
 
 @endpush

@@ -92,3 +92,25 @@ Breadcrumbs::for('partners.show', function ($trail) {
         route('partners.create')
     );
 });
+
+// projects
+Breadcrumbs::for('projects.index', function ($trail) {
+    $trail->push(
+        ucfirst(__('messages.projects.projects')),
+        route('projects.index')
+    );
+});
+Breadcrumbs::for('projects.create', function ($trail) {
+    $trail->parent('projects.index');
+    $trail->push(
+        ucfirst(__('messages.projects.breadcrumbs.create')),
+        route('projects.create')
+    );
+});
+Breadcrumbs::for('projects.edit', function ($trail) {
+    $trail->parent('projects.index');
+    $trail->push(
+        ucfirst(__('messages.projects.breadcrumbs.edit')),
+        route('projects.create')
+    );
+});

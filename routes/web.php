@@ -32,4 +32,9 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('partners','PartnerController');
     Route::get('partners.data', 'PartnerController@getPartners')
         ->name('partners.data');
+
+    //projects
+    Route::resource('projects','ProjectController');
+    Route::get('projects.data', 'ProjectController@getProjects')
+        ->name('projects.data');
 });

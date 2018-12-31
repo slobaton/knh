@@ -45,18 +45,6 @@
               </li>
               @else
               @include('layouts.navbar')
-              <li>
-                <a class="nav-link" href="{{ route('users.index') }}">
-                  <i class="fas fa-users-cog"></i>
-                  {{ __('messages.navbar.users') }}
-                </a>
-              </li>
-              <li>
-                <a class="nav-link" href="{{ route('roles.index') }}">
-                  <i class="fas fa-address-card"></i>
-                  {{ __('messages.navbar.roles') }}
-                </a>
-              </li>
               <li class="nav-item dropdown">
                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                   {{ Auth::user()->name }} <span class="caret"></span>

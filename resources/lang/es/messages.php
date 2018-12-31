@@ -33,6 +33,16 @@ return [
         'roles' => 'Roles asignados',
     ],
 
+    'projects' => [
+        'project' => 'proyecto',
+        'projects' => 'proyectos',
+        'breadcrumbs' => [
+            'create' => 'Nuevo proyecto',
+            'edit' => 'Editar proyecto',
+            'show' => 'Descripción del proyecto',
+        ],
+    ],
+
     'roles' => [
         'role' => 'rol',
         'roles' => 'roles',
