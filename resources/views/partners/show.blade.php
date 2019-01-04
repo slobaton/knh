@@ -101,7 +101,7 @@
             <strong class="font-weight-bold">
               {{ __('Número de celular') . ': ' }}
             </strong>
-            {{ $partner->phone }}<br>
+            {{ $partner->cellphone }}<br>
           </p>
           <p>
             <strong class="font-weight-bold">
