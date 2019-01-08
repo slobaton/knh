@@ -11,7 +11,7 @@
 <a
   role="button"
   class="btn btn-secondary btn-sm text-white"
-  href="{{ route('projects.show',$project->id) }}"
+  href="{{ route('projects.show', $project->id) }}"
 >
   <i class="fas fa-eye"></i>
 </a>

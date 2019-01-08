@@ -23,7 +23,6 @@
 <body>
   <div id="app">
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-      <div class="container">
         <a class="navbar-brand" href="{{ url('/') }}">
           KNH
         </a>
@@ -68,7 +67,6 @@
               @endguest
             </ul>
           </div>
-        </div>
       </nav>
       <div class="container">
         @yield('breadcrumbs')

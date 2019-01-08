@@ -114,3 +114,10 @@ Breadcrumbs::for('projects.edit', function ($trail) {
         route('projects.create')
     );
 });
+Breadcrumbs::for('projects.show', function ($trail) {
+    $trail->parent('projects.index');
+    $trail->push(
+        ucfirst(__('messages.projects.breadcrumbs.show')),
+        route('projects.create')
+    );
+});

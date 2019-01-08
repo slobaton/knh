@@ -69,7 +69,7 @@ class PartnerController extends Controller
         } catch (\Exception $e) {
             DB::rollback();
             \Log::error('Error has ocurred (store partner) - '. $e->getMessage());
-            return back()->with('error', __('Error al crear el socio'));
+            return back()->withErrors([__('Error al crear el socio').$e->getMessage()]);
         }
         return redirect()->route('partners.index')
             ->with('success','Socio creado exitosamente');
@@ -111,7 +111,7 @@ class PartnerController extends Controller
                 ->first();
         } catch(\Exception $e) {
             Log::error('Error has ocurred (edit partner) - '. $e->getMessage());
-            return back()->with('error', __('Socio no encontrado'));
+            return back()->withErrors([__('Socio no encontrado')]);
         }
 
         return view('partners.edit', compact('partner'));
@@ -152,7 +152,7 @@ class PartnerController extends Controller
         } catch (\Exception $e) {
             DB::rollback();
             \Log::error('Error has ocurred (store partner) - '. $e->getMessage());
-            return back()->with('error', __('Error al crear el socio'));
+            return back()->with('error', __('Error al crear el socio '));
         }
         return redirect()->back()
             ->with('success','Socio actualizado exitosamente');
@@ -189,13 +189,13 @@ class PartnerController extends Controller
     {
         $this->validate($request, [
             'partner_name' => 'required|string|max:255',
-            'partner_email' => 'required|email|max:255',
+            'partner_email' => 'required|email|max:255|unique:partners,partner_email',
             'partner_phone' => 'required|max:15',
             'partner_location' => 'required|max:350',
             'partner_city' => 'required|max:255',
             'name' => 'required|string',
             'position' => 'required|string',
-            'cellphone' => 'required',
+            'cellphone' => 'required|numeric',
         ]);
     }
 }

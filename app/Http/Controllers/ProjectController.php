@@ -11,11 +11,11 @@ class ProjectController extends Controller
 {
     function __construct()
     {
-        $this->middleware('permission:-list');
-        $this->middleware('permission:-create', ['only' => ['create','store']]);
-        $this->middleware('permission:-edit', ['only' => ['edit','update']]);
-        $this->middleware('permission:-delete', ['only' => ['destroy']]);
-        $this->middleware('permission:-show', ['only' => ['destroy']]);
+        $this->middleware('permission:project-list');
+        $this->middleware('permission:project-create', ['only' => ['create','store']]);
+        $this->middleware('permission:project-edit', ['only' => ['edit','update']]);
+        $this->middleware('permission:project-delete', ['only' => ['destroy']]);
+        $this->middleware('permission:project-show', ['only' => ['destroy']]);
     }
     /**
      * Display a listing of the resource.
@@ -64,7 +64,8 @@ class ProjectController extends Controller
      */
     public function show($id)
     {
-        //
+        $project = Project::findOrFail($id);
+        return view('projects.show', ['project' => $project]);
     }
 
     /**
