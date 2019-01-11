@@ -14,9 +14,18 @@
 @section('content')
 <div class="container">
     <div class="bd-callout bd-callout-warning">
-        <h5 id="conveying-meaning-to-assistive-technologies">Conveying meaning to assistive technologies</h5>
-
-        <p>Using color to add meaning only provides a visual indication, which will not be conveyed to users of assistive technologies – such as screen readers. Ensure that information denoted by the color is either obvious from the content itself (e.g. the visible text), or is included through alternative means, such as additional text hidden with the <code class="highlighter-rouge">.sr-only</code> class.</p>
-        </div>
+    <h5>
+        <strong>{{ __('Informacion del proyecto') }}</strong>
+    </h5>
+    <hr>
+    <p>
+        <strong>{{ __('Codigo: ') }}</strong>
+        <em>{{ $project->project_code }}</em>
+    </p>
+    <p>
+        <strong>{{ __('Nombre: ') }}</strong>
+        <em>{{ $project->project_name }}</em>
+    </p>
+    </div>
 </div>
 @endsection
