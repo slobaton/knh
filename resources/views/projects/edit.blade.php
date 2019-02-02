@@ -1,5 +1,7 @@
 @extends('layouts.app')
-
+@section('css')
+<link href="https://unpkg.com/gijgo@1.9.11/css/gijgo.min.css"rel="stylesheet" type="text/css" />
+@endsection
 @php
     $title = strtoupper(__('editar proyecto'))
 @endphp
@@ -44,4 +46,14 @@
         @include('projects.partials.form')
     {!! Form::close() !!}
   @endcomponent
+@endsection
+
+@section('scripts')
+    <script src="https://unpkg.com/gijgo@1.9.11/js/gijgo.min.js" type="text/javascript"></script>
+    <script>
+        $('#datepicker').datepicker({
+            uiLibrary: 'bootstrap4',
+            format: 'dd-mm-yyyy'
+        });
+    </script>
 @endsection

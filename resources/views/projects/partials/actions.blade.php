@@ -3,6 +3,9 @@
   role="button"
   class="btn btn-primary btn-sm"
   href="{{ route('projects.edit',$project->id) }}"
+  data-toggle="tooltip"
+  data-placement="bottom"
+  title="{{ __('Editar proyecto') }}"
 >
   <i class="fas fa-edit"></i>
 </a>
@@ -12,6 +15,9 @@
   role="button"
   class="btn btn-secondary btn-sm text-white"
   href="{{ route('projects.show', $project->id) }}"
+  data-toggle="tooltip"
+  data-placement="bottom"
+  title="{{ __('Ver proyecto') }}"
 >
   <i class="fas fa-eye"></i>
 </a>
@@ -20,9 +26,12 @@
 <a
     role="button"
     class="btn btn-info btn-sm text-white"
-    href=""
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="{{ __('Subir archivo al servidor') }}"
+    href="{{ route('projects.upload', $project->id) }}"
 >
-    <i class="fas fa-folder-open"></i>
+    <i class="fas fa-file-upload"></i>
 </a>
 @endcan
 @can('project-delete')
@@ -40,6 +49,9 @@
       [
         'type' => 'submit',
         'class' => 'btn btn-danger btn-sm text-white',
+        'data-toggle' => 'tooltip',
+        'data-placement' => 'bottom',
+        'title' => 'Eliminar proyecto'
       ]
     )
   !!}

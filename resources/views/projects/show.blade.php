@@ -12,20 +12,62 @@
 @endcomponent
 
 @section('content')
-<div class="container">
-    <div class="bd-callout bd-callout-warning">
-    <h5>
-        <strong>{{ __('Informacion del proyecto') }}</strong>
-    </h5>
-    <hr>
-    <p>
-        <strong>{{ __('Codigo: ') }}</strong>
-        <em>{{ $project->project_code }}</em>
-    </p>
-    <p>
-        <strong>{{ __('Nombre: ') }}</strong>
-        <em>{{ $project->project_name }}</em>
-    </p>
+    <div class="row">
+        <div class="bd-callout bd-callout-info col-sm-12 col-md-5 offset-md-1">
+            <h5 class="text-center">
+                <strong>{{ __('Información del proyecto') }}</strong>
+            </h5>
+            <hr>
+            <p>
+                <strong>{{ __('Codigo: ') }}</strong>
+                <em>{{ $project->project_code }}</em>
+            </p>
+            <p>
+                <strong>{{ __('Nombre: ') }}</strong>
+                <em>{{ $project->project_name }}</em>
+            </p>
+            <p>
+                <strong>{{ __('Fecha de inicio: ') }}</strong>
+                <em>
+                    {{ Carbon\Carbon::parse($project->created_date)->format('d/m/Y') }}
+                </em>
+            </p>
+            <p>
+                <strong>{{ __('Socio: ') }}</strong>
+                <a href="{{ route('partners.show', $partner->id) }}">
+                    <em>{{ $partner->partner_name }}</em>
+                </a>
+            </p>
+            <p>
+                <strong>{{ __('Descripción del proyecto: ') }}</strong>
+                <em>{{ $project->description }}</em>
+            </p>
+        </div>
+        <div class="bd-callout bd-callout-warning col-sm-12 col-md-5 offset-md-1">
+            <h5 class="text-center">
+                <strong>{{ __('Información del coordinador') }}</strong>
+            </h5>
+            <hr>
+            <p>
+                <strong>{{ __('Nombre: ') }}</strong>
+                <em>{{ $project->coordinator_name }}</em>
+            </p>
+            <p>
+                <strong>{{ __('Teléfono Celular: ') }}</strong>
+                <em>{{ $project->coordinator_cellphone }}</em>
+            </p>
+            <p>
+                <strong>{{ __('Teléfono fijo: ') }}</strong>
+                <em>{{ $project->coordinator_phone }}</em>
+            </p>
+            <p>
+                <strong>{{ __('Correo eléctronico: ') }}</strong>
+                <em>{{ $project->coordinator_email }}</em>
+            </p>
+            <p>
+                <strong>{{ __('Descripción: ') }}</strong>
+                <em>{{ $project->description }}</em>
+            </p>
+        </div>
     </div>
-</div>
 @endsection

@@ -15,7 +15,8 @@ class ProjectController extends Controller
         $this->middleware('permission:project-create', ['only' => ['create','store']]);
         $this->middleware('permission:project-edit', ['only' => ['edit','update']]);
         $this->middleware('permission:project-delete', ['only' => ['destroy']]);
-        $this->middleware('permission:project-show', ['only' => ['destroy']]);
+        $this->middleware('permission:project-upload', ['only' => ['uploadForm', 'upload']]);
+        $this->middleware('permission:project-show', ['only' => ['show']]);
     }
     /**
      * Display a listing of the resource.
@@ -65,7 +66,8 @@ class ProjectController extends Controller
     public function show($id)
     {
         $project = Project::findOrFail($id);
-        return view('projects.show', ['project' => $project]);
+        $partner = Partner::findOrFail($project->partner_id);
+        return view('projects.show', compact('project', 'partner'));
     }
 
     /**
@@ -128,6 +130,27 @@ class ProjectController extends Controller
             })
             ->rawColumns(['action'])
             ->make(true);
+    }
+
+    public function uploadFile(Request $request, $id)
+    {
+        dd($request->all());
+        $this->validate($request, [
+            'file' => 'required|file',
+            'type' => 'required|string'
+        ]);
+        dd($id);
+        // try{
+
+        // } catch (\Throwable $th) {
+        //     //throw $th;
+        // }
+    }
+
+    public function uploadForm($id)
+    {
+        $project = Project::findOrFail($id);
+        return view('projects.upload', compact('project'));
     }
 
     private function validateFields($request)

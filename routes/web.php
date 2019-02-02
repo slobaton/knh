@@ -35,6 +35,10 @@ Route::group(['middleware' => ['auth']], function() {
 
     //projects
     Route::resource('projects','ProjectController');
+    Route::get('projects/{project}/upload', 'ProjectController@uploadForm')
+        ->name('projects.upload');
+    Route::post('project/{project}/file', 'ProjectController@uploadFile')
+        ->name('projects.upload.file');
     Route::get('projects.data', 'ProjectController@getProjects')
         ->name('projects.data');
 });

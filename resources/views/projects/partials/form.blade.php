@@ -21,12 +21,13 @@
                 {{ __('Fecha de inicio') }} :
             </strong>
             {!!
-                Form::date(
+                Form::text(
                     'created_date',
                     null,
                     array(
                         'class' => 'form-control',
-                        'required' => 'required'
+                        'required' => 'required',
+                        'id' => 'datepicker'
                     )
                 );
             !!}

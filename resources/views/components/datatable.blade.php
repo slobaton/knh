@@ -17,6 +17,7 @@ $(function() {
       url: "{!! asset('js/datatables/spanish.json') !!}",
     },
     initComplete: function(settings, json) {
+      $('[data-toggle="tooltip"]').tooltip();
       $('.btn-danger').click(function() {
         event.preventDefault();
 

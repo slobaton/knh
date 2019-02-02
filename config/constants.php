@@ -12,4 +12,9 @@ return [
         'sc'   => 'Sucre',
         'alto' => 'El Alto',
     ],
+    'documents_types' => [
+        'agreements' => 'Acuerdos',
+        'budgets' => 'Presupuestos',
+        'reports' => 'Reportes',
+    ]
 ];
