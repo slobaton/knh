@@ -1,6 +1,10 @@
 @extends('layouts.app')
 @section('css')
-<link href="https://unpkg.com/gijgo@1.9.11/css/gijgo.min.css"rel="stylesheet" type="text/css" />
+<link
+    href="{{ asset('css/gijgo.datetime.css') }}"
+    rel="stylesheet"
+    type="text/css"
+/>
 @endsection
 @php
     $title = strtoupper(__('editar proyecto'))
@@ -22,7 +26,7 @@
         </button>
     </div>
     @endif
-  @component('components.form', ['title' => 'Formulario', 'col' => '10'])
+    @component('components.form', ['title' => 'Formulario', 'col' => '10'])
     @if (count($errors) > 0)
       <div class="alert alert-danger">
         <strong>Oops!</strong> {{ __('messages.common_crud.error.general') }}<br><br>
@@ -49,7 +53,7 @@
 @endsection
 
 @section('scripts')
-    <script src="https://unpkg.com/gijgo@1.9.11/js/gijgo.min.js" type="text/javascript"></script>
+<script src="{{ asset('js/gijgo.datetime.js') }}" type="text/javascript"></script>
     <script>
         $('#datepicker').datepicker({
             uiLibrary: 'bootstrap4',

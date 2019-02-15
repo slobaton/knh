@@ -6,11 +6,12 @@
 <script>
 let data = "{{ json_encode($columns) }}";
 let order = "{{ json_encode($order) }}";
+let route = "{{ isset($param) ? route($route, $param) : route($route) }}";
 $(function() {
   $('#datatable').DataTable({
     processing: true,
     serverSide: true,
-    ajax: '{!! route("$route") !!}',
+    ajax: route,
     columns: JSON.parse(data.replace(/&quot;/g,'"')),
     order: JSON.parse(order.replace(/&quot;/g,'"')),
     language: {
@@ -57,6 +58,6 @@ $(function() {
   type="text/javascript"
   src="{{ asset('js/datatables/dataTables.bootstrap4.min.js') }}"
 ></script>
-<script src="js/sweetalert/sweetalert.min.js"></script>
+<script src="{{ asset('js/sweetalert/sweetalert.min.js') }}"></script>
 
 @endpush

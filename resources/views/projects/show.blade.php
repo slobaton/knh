@@ -13,7 +13,7 @@
 
 @section('content')
     <div class="row">
-        <div class="bd-callout bd-callout-info col-sm-12 col-md-5 offset-md-1">
+        <div class="bd-callout bd-callout-info col-sm-12 col-md-5">
             <h5 class="text-center">
                 <strong>{{ __('Información del proyecto') }}</strong>
             </h5>
@@ -43,7 +43,7 @@
                 <em>{{ $project->description }}</em>
             </p>
         </div>
-        <div class="bd-callout bd-callout-warning col-sm-12 col-md-5 offset-md-1">
+        <div class="bd-callout bd-callout-warning col-sm-12 col-md-5 offset-md-2">
             <h5 class="text-center">
                 <strong>{{ __('Información del coordinador') }}</strong>
             </h5>
@@ -68,6 +68,36 @@
                 <strong>{{ __('Descripción: ') }}</strong>
                 <em>{{ $project->description }}</em>
             </p>
+        </div>
+        <div class="bd-callout bd-callout-info col-sm-12 col-md-12">
+            <h5 class="text-center">
+                <strong>{{ __('Documentos del proyecto') }}</strong>
+            </h5>
+            <hr>
+            @php
+                $document_types = array_keys(config('constants.documents_types'));
+            @endphp
+            @foreach ($document_types as $type)
+                @if (! is_null($documents->get($type)))
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12">
+                            <strong>
+                                {{ __(config('constants.documents_types.' . $type)) }}
+                            </strong>
+                            <em>{{ $project->description }}</em>
+                        </div>
+                        @foreach ($documents[$type] as $document)
+                            <div class="col-sm-12 col-md-12">
+                                <a href="{{ Storage::url($document->file) }}">
+                                    {{ $document->name }}
+                                    <i class="fas fa-file-pdf"></i>
+                                </a>
+                            </div>
+                        @endforeach
+                    </div>
+                    <br>
+                @endif
+            @endforeach
         </div>
     </div>
 @endsection

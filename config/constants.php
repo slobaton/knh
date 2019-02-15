@@ -16,5 +16,6 @@ return [
         'agreements' => 'Acuerdos',
         'budgets' => 'Presupuestos',
         'reports' => 'Reportes',
+        'monitoring' => 'Monitoreo',
     ]
 ];

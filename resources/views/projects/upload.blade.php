@@ -8,6 +8,9 @@
 @endcomponent
 
 @section('content')
+
+@component('components.success_message')@endcomponent
+
 @component('components.form', ['title' => 'Subir al archivo al servidor', 'col' => '10'])
     @if (count($errors) > 0)
       <div class="alert alert-danger">
@@ -29,6 +32,22 @@
         )
     !!}
         <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>{{ __('Nombre del archivo:') }}</strong>
+                    {!!
+                        Form::text(
+                            'name',
+                            null,
+                            array(
+                                'placeholder' => 'Nombre del archivo',
+                                'class' => 'form-control',
+                                'required' => 'required'
+                            )
+                        )
+                    !!}
+                </div>
+            </div>
             <div class="col-xs-12 col-sm-12 col-md-6">
                 <strong>{{ __('Archivo: ') }}</strong>
                 <div class="form-group">
@@ -37,7 +56,8 @@
                         id="file"
                         name="file"
                         lang="es"
-                        accept=".jpg,.png,.pdf,.jpeg"
+                        accept=".docx,.doc,.pdf"
+                        required
                     >
                 </div>
             </div>
@@ -58,6 +78,7 @@
                     !!}
                 </div>
             </div>
+            {{ Form::hidden('project_id', $project->id) }}
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                 <button type="submit" class="btn btn-primary float-right">
                     <i class="fas fa-share-square"></i> {{ __('Enviar') }}
@@ -65,5 +86,50 @@
             </div>
         </div>
     {!! Form::close() !!}
+    <hr>
+    <h6 class="text-center">{{ __('Lista de documentos') }}</h6>
+    <hr>
+    {{-- Document list --}}
+    <table id="datatable" class="table table-striped table-bordered" style="width:100%">
+        <thead>
+          <tr>
+           <th>Nombre</th>
+           <th>Tipo</th>
+           <th>Fecha Creacion</th>
+           <th width="280px">Acciones</th>
+          </tr>
+        </thead>
+    </table>
+    @php
+        $modalTile = __(
+            'messages.common_crud.confirm_message',
+            ['name' => __('documento')]
+        );
+    @endphp
+    @component('components.datatable', [
+        'modalTitle' => $modalTile,
+        'route' => 'projects.documents',
+        'param' => $project->id,
+        'order' => [[0, 'desc']],
+        'columns' => [
+        [
+            'data' => 'name',
+            'name' => 'name',
+        ], [
+            'data' => 'type',
+            'name' => 'type',
+        ], [
+            'data' => 'created_at',
+            'name' => 'created_at',
+        ], [
+            'data' => 'action',
+            'name' => 'action',
+            'orderable' => false,
+            'searchable' => false
+        ]
+        ]
+    ])
+    @endcomponent
+
 @endcomponent
 @endsection

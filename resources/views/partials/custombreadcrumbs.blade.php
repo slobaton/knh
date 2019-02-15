@@ -13,4 +13,3 @@
     {{ Breadcrumbs::render($breadcrumb) }}
 </div>
 @endsection
-

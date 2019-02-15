@@ -1,6 +1,10 @@
 @extends('layouts.app')
 @section('css')
-<link href="https://unpkg.com/gijgo@1.9.11/css/gijgo.min.css"rel="stylesheet" type="text/css" />
+<link
+    href="{{ asset('css/gijgo.datetime.css') }}"
+    rel="stylesheet"
+    type="text/css"
+/>
 @endsection
 @php
 $title = strtoupper(
@@ -45,7 +49,7 @@ $title = strtoupper(
 @endsection
 
 @section('scripts')
-    <script src="https://unpkg.com/gijgo@1.9.11/js/gijgo.min.js" type="text/javascript"></script>
+    <script src="{{ asset('js/gijgo.datetime.js') }}" type="text/javascript"></script>
     <script>
         $('#datepicker').datepicker({
             uiLibrary: 'bootstrap4',

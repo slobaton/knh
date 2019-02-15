@@ -1,25 +1,25 @@
 @can('project-edit')
 <a
-  role="button"
-  class="btn btn-primary btn-sm"
-  href="{{ route('projects.edit',$project->id) }}"
-  data-toggle="tooltip"
-  data-placement="bottom"
-  title="{{ __('Editar proyecto') }}"
+    role="button"
+    class="btn btn-primary btn-sm"
+    href="{{ route('projects.edit',$project->id) }}"
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="{{ __('Editar proyecto') }}"
 >
-  <i class="fas fa-edit"></i>
+    <i class="fas fa-edit"></i>
 </a>
 @endcan
 @can('project-show')
 <a
-  role="button"
-  class="btn btn-secondary btn-sm text-white"
-  href="{{ route('projects.show', $project->id) }}"
-  data-toggle="tooltip"
-  data-placement="bottom"
-  title="{{ __('Ver proyecto') }}"
+    role="button"
+    class="btn btn-secondary btn-sm text-white"
+    href="{{ route('projects.show', $project->id) }}"
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="{{ __('Ver proyecto') }}"
 >
-  <i class="fas fa-eye"></i>
+    <i class="fas fa-eye"></i>
 </a>
 @endcan
 @can('upload-files')

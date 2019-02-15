@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
 use App\Project;
 use App\Partner;
+use App\Document;
+
+use DB;
 
 class ProjectController extends Controller
 {
@@ -67,7 +70,14 @@ class ProjectController extends Controller
     {
         $project = Project::findOrFail($id);
         $partner = Partner::findOrFail($project->partner_id);
-        return view('projects.show', compact('project', 'partner'));
+        $documents = DB::table('documents')
+            ->where('project_id', $id)
+            ->get()
+            ->groupBy('type');
+        return view(
+            'projects.show',
+            compact('project', 'partner', 'documents')
+        );
     }
 
     /**
@@ -132,19 +142,51 @@ class ProjectController extends Controller
             ->make(true);
     }
 
+    public function getDocuments($projectId)
+    {
+        $documents = Document::where('project_id', $projectId);
+        return Datatables::of($documents)
+            ->addColumn('action', function($document) {
+                return view(
+                    'projects.partials.documents_actions',
+                    compact('document')
+                );
+            })
+            ->editColumn('created_at', function($document) {
+                return \Carbon\Carbon::parse($document->created_at, 'America/La_Paz')
+                    ->format('d/m/y H:m:s');
+            })
+            ->editColumn('type', function($document) {
+                return config('constants.documents_types.'.$document->type);
+            })
+            ->rawColumns(['action'])
+            ->make(true);
+    }
+
     public function uploadFile(Request $request, $id)
     {
-        dd($request->all());
         $this->validate($request, [
-            'file' => 'required|file',
-            'type' => 'required|string'
+            'file' => 'required|file|mimes:pdf,doc,docx',
+            'name' => 'required|string',
+            'type' => 'required|string',
+            'project_id' => 'required|string'
         ]);
-        dd($id);
-        // try{
 
-        // } catch (\Throwable $th) {
-        //     //throw $th;
-        // }
+        try {
+            DB::beginTransaction();
+            $inputs = $request->all();
+            if ($request->file('file')) {
+                $file = $request->file('file')->store('public/documents');
+                $inputs['file'] = $file;
+            }
+            Document::create($inputs);
+            DB::commit();
+        } catch(\Exception $e) {
+            DB::rollback();
+            \Log::error('Error has ocurred (upload file) - '. $e->getMessage());
+            return back()->withErrors([__('Error al guardar el archivo').$e->getMessage()]);
+        }
+        return back()->with('success','Archivo subido al servidor');
     }
 
     public function uploadForm($id)

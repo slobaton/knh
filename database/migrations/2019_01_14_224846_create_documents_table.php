@@ -17,6 +17,7 @@ class CreateDocumentsTable extends Migration
             $table->increments('id');
             $table->string('type');
             $table->string('file');
+            $table->string('name');
             $table->unsignedInteger('project_id');
             $table->timestamps();
 

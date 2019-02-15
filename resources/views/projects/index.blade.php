@@ -45,7 +45,7 @@
       @php
         $modalTile = __(
           'messages.common_crud.confirm_message',
-          ['name' => __('messages.partners.singular')]
+          ['name' => __('messages.projects.project')]
         );
       @endphp
 
