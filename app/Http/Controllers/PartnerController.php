@@ -16,7 +16,7 @@ class PartnerController extends Controller
         $this->middleware('permission:partner-create', ['only' => ['create','store']]);
         $this->middleware('permission:partner-edit', ['only' => ['edit','update']]);
         $this->middleware('permission:partner-delete', ['only' => ['destroy']]);
-        $this->middleware('permission:partner-show', ['only' => ['destroy']]);
+        $this->middleware('permission:partner-show', ['only' => ['show']]);
     }
     /**
      * Display a listing of the resource.

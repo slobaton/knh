@@ -22,7 +22,7 @@
     <i class="fas fa-eye"></i>
 </a>
 @endcan
-@can('upload-files')
+@can('project-upload')
 <a
     role="button"
     class="btn btn-info btn-sm text-white"

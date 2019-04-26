@@ -11,7 +11,7 @@
   </a>
 </li>
 
-@can('partners-list')
+@can('partner-list')
 <li>
   <a
     class="nav-link @if('partners' == $currentPath) active @endif"
@@ -23,7 +23,7 @@
 </li>
 @endcan
 
-@can('projects-list')
+@can('project-list')
 <li>
   <a
     class="nav-link @if('projects' == $currentPath) active @endif"

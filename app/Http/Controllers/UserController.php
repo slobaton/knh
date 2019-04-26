@@ -12,6 +12,14 @@ use Hash;
 
 class UserController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:user-list');
+        $this->middleware('permission:user-create', ['only' => ['create','store']]);
+        $this->middleware('permission:user-edit', ['only' => ['edit','update']]);
+        $this->middleware('permission:user-delete', ['only' => ['destroy']]);
+        $this->middleware('permission:user-show', ['only' => ['show']]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -32,7 +40,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        $roles = Role::pluck('name','name')->all();
+        $roles = Role::all();
         return view('users.create', compact('roles'));
     }
 
@@ -47,7 +55,7 @@ class UserController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
-            'password' => 'required|same:confirm-password',
+            'password' => 'required|same:password_confirmation',
             'roles' => 'required'
         ]);
 
@@ -91,11 +99,9 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::find($id);
-        $roles = Role::pluck('name','name')->all();
-        $userRole = $user->roles->pluck('name','name')->all();
+        $roles = Role::all();
 
-
-        return view('users.edit',compact('user','roles','userRole'));
+        return view('users.edit', compact('user', 'roles'));
     }
 
     /**
@@ -110,18 +116,16 @@ class UserController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'email' => 'required|email|unique:users,email,'.$id,
-            'password' => 'same:confirm-password',
+            'password' => 'same:password_confirmation',
             'roles' => 'required'
         ]);
 
-
         $input = $request->all();
-        if(!empty($input['password'])){
+        if(!empty($input['password'])) {
             $input['password'] = Hash::make($input['password']);
-        }else{
+        } else {
             $input = array_except($input,array('password'));
         }
-
 
         $user = User::find($id);
         $user->update($input);
@@ -131,8 +135,11 @@ class UserController extends Controller
         $user->assignRole($request->input('roles'));
 
 
-        return redirect()->route('users.index')
-            ->with('success','User updated successfully');
+        return redirect()->route('users.edit', $id)
+            ->with(
+                'success',
+                'La información del usuario ha sido actualizada'
+            );
     }
 
     /**
@@ -161,6 +168,10 @@ class UserController extends Controller
                 return view(
                     'users.partials.accions', compact('user')
                 );
+            })
+            ->editColumn('created_at', function($user) {
+                return \Carbon\Carbon::parse($user->created_at, 'America/La_Paz')
+                    ->format('d/m/y H:m:s');
             })
             ->rawColumns(['action'])
             ->make(true);

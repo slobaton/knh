@@ -78,4 +78,32 @@ return [
             'show' => 'Descripción del socio',
         ],
     ],
+
+    'permissions' => [
+        'role-list' => 'Ver lista de roles',
+        'role-create' => 'Crear un rol',
+        'role-edit' => 'Editar roles',
+        'role-delete' => 'Eliminar roles',
+        'role-show' => 'Ver rol',
+        'user-list' => 'Ver lista de usuarios',
+        'user-create' => 'Crear un usuario',
+        'user-edit' => 'Editar usuarios',
+        'user-delete' => 'Eliminar usuarios',
+        'user-show' => 'Ver usuario',
+    //    partner
+        'partner-list' => 'Ver lista de socios',
+        'partner-create' => 'Crear socio',
+        'partner-edit' => 'Editar socio',
+        'partner-delete' => 'Eliminar socio',
+        'partner-show' => 'Ver socio',
+    //    document
+        'document-delete' => 'Eliminar documento',
+    //    project
+        'project-list' => 'Ver lista de proyectos',
+        'project-create' => 'Crear proyecto',
+        'project-edit' => 'Editar proyecto',
+        'project-delete' => 'Eliminar proyecto',
+        'project-upload' => 'Subir documento',
+        'project-show' => 'Ver proyecto',
+    ]
 ];

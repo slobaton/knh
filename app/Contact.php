@@ -15,6 +15,12 @@ class Contact extends Model
         'phone',
         'location',
         'partner_id',
+        // 'city',
         'photo'
     ];
+
+    public function partner()
+    {
+        $this->belongsTo('App\Partner', 'partner_id');
+    }
 }

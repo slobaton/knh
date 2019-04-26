@@ -16,4 +16,9 @@ class Partner extends Model
         'partner_city',
         'partner_photo',
     ];
+
+    public function contacts()
+    {
+        return $this->hasMany('App\Contact');
+    }
 }

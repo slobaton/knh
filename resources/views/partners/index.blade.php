@@ -19,15 +19,20 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-12 margin-tb">
-      <div class="float-right">
-          <a
-            class="btn btn-primary"
-            href="{{ route('partners.create') }}"
-          >
-          <i class="fa fa-plus" aria-hidden="true"></i>
-            {{ __('messages.common.create', ['name' => __('messages.partners.singular')]) }}
-          </a>
-      </div>
+        @can('partner-create')
+            <div class="float-right">
+                <a
+                    class="btn btn-primary"
+                    href="{{ route('partners.create') }}"
+                >
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+                    {{
+                        __('messages.common.create',
+                        ['name' => __('messages.partners.singular')])
+                    }}
+                </a>
+            </div>
+        @endcan
     </div>
   </div>
 </div>

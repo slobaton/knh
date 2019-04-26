@@ -19,6 +19,7 @@
     <div class="container">
         <div class="row">
           <div class="col-lg-12 margin-tb">
+            @can('project-create')
             <div class="float-right">
                 <a
                   class="btn btn-primary"
@@ -28,6 +29,7 @@
                   {{ __('messages.common.create', ['name' => __('messages.projects.project')]) }}
                 </a>
             </div>
+            @endcan
           </div>
         </div>
       </div>

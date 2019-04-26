@@ -1,5 +1,4 @@
 @extends('layouts.app')
-
 @php
     $title = strtoupper(__('messages.common_crud.created.title', ['name' => __('messages.roles.role')]))
 @endphp
@@ -28,19 +27,22 @@
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Name:</strong>
-                {!! Form::text('name', null, array('placeholder' => 'Name','class' => 'form-control')) !!}
+                <strong>{{ __('Nombre del rol') }}</strong>
+                {!! Form::text('name', null, array('placeholder' => 'Nombre del rol','class' => 'form-control')) !!}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Permission:</strong>
+                <strong>{{ __('Permisos: ') }}</strong>
                 <br/>
                 <div class="row">
                     @foreach($permission as $value)
                     <div class="col-xs-12 col-md-2">
                         <label>{{ Form::checkbox('permission[]', $value->id, false, array('class' => 'name')) }}
-                        {{ $value->name }}</label>
+                            {{
+                                __('messages.permissions.'.$value->name)
+                            }}
+                        </label>
                     </div>
                     @endforeach
                 </div>

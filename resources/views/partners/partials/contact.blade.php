@@ -57,7 +57,7 @@
         </div>
         <div class="col-xs-12 col-sm-12 col-md-6">
                 <div class="form-group">
-            <strong>{{ __('Telefono celular:') }}</strong>
+            <strong>{{ __('Teléfono celular:') }}</strong>
             {!!
                 Form::number(
                     'cellphone',
