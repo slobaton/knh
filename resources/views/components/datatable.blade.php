@@ -14,6 +14,7 @@ $(function() {
     ajax: route,
     columns: JSON.parse(data.replace(/&quot;/g,'"')),
     order: JSON.parse(order.replace(/&quot;/g,'"')),
+    select: true,
     language: {
       url: "{!! asset('js/datatables/spanish.json') !!}",
     },
@@ -44,9 +45,6 @@ $(function() {
   });
 });
 </script>
-<script>
-
-        </script>
 @endsection
 
 @push('javascript')

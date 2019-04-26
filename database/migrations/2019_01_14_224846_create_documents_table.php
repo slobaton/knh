@@ -18,6 +18,7 @@ class CreateDocumentsTable extends Migration
             $table->string('type');
             $table->string('file');
             $table->string('name');
+            $table->string('year', 4);
             $table->unsignedInteger('project_id');
             $table->timestamps();
 

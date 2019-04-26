@@ -26,12 +26,13 @@ class CreateProjectsTable extends Migration
             $table->string('description', 350)->nullable();
             $table->string('additional_coordinator_info', 350)->nullable();
             $table->string('created_date');
-            $table->unsignedInteger('partner_id');
+            $table->string('end_date');
+            $table->unsignedInteger('partner_id')->nullable();
             $table->timestamps();
 
             $table->foreign('partner_id')
                 ->references('id')->on('partners')
-                ->onDelete('cascade');
+                ->onDelete('set null');
         });
     }
 

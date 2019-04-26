@@ -50,21 +50,7 @@ class PartnerController extends Controller
         try {
             DB::beginTransaction();
             $inputs = $request->all();
-
-            if($request->file('partner_photo')) {
-                $imagen = $request->file('partner_photo')->store('public/partners');
-                $inputs['partner_photo'] = $imagen;
-            }
-
             $partner = Partner::create($inputs);
-            if($request->file('photo')) {
-                $imagen = $request->file('photo')->store('public/partners');
-                $inputs['photo'] = $imagen;
-            }
-
-            $inputs['partner_id'] = $partner->id;
-
-            Contact::create($inputs);
             DB::commit();
         } catch (\Exception $e) {
             DB::rollback();
@@ -84,10 +70,7 @@ class PartnerController extends Controller
     public function show($id)
     {
         try {
-            $partner = DB::table('partners')
-                ->join('contacts', 'contacts.partner_id', '=','partners.id')
-                ->where('partners.id', '=', $id)
-                ->first();
+            $partner = Partner::findOrFail($id);
         } catch(\Exception $e) {
             Log::error('Error has ocurred (show partner) - '. $e->getMessage());
             return back()->with('error', __('Socio no encontrado'));
@@ -105,10 +88,7 @@ class PartnerController extends Controller
     public function edit($id)
     {
         try {
-            $partner = DB::table('partners')
-                ->join('contacts', 'contacts.partner_id', '=','partners.id')
-                ->where('partners.id', '=', $id)
-                ->first();
+            $partner = Partner::findOrfail($id);
         } catch(\Exception $e) {
             Log::error('Error has ocurred (edit partner) - '. $e->getMessage());
             return back()->withErrors([__('Socio no encontrado')]);
@@ -126,7 +106,7 @@ class PartnerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validateFields($request);
+        $this->validateFields($request, $id);
 
         try {
             DB::beginTransaction();
@@ -137,15 +117,6 @@ class PartnerController extends Controller
                 $inputs['partner_photo'] = $imagen;
             }
 
-            $partner->update($inputs);
-
-            if($request->file('photo')) {
-                $imagen = $request->file('photo')->store('public/partners');
-                $inputs['photo'] = $imagen;
-            }
-            $inputs['partner_id'] = $partner->id;
-
-            $partner = Contact::where('partner_id', '=', $id)->first();
             $partner->update($inputs);
 
             DB::commit();
@@ -185,17 +156,14 @@ class PartnerController extends Controller
             ->make(true);
     }
 
-    private function validateFields($request)
+    private function validateFields($request, $id = 0)
     {
         $this->validate($request, [
             'partner_name' => 'required|string|max:255',
-            'partner_email' => 'required|email|max:255|unique:partners,partner_email',
+            'partner_email' => 'required|email|max:255|unique:partners,partner_email,'.$id,
             'partner_phone' => 'required|max:15',
             'partner_location' => 'required|max:350',
             'partner_city' => 'required|max:255',
-            'name' => 'required|string',
-            'position' => 'required|string',
-            'cellphone' => 'required|numeric',
         ]);
     }
 }

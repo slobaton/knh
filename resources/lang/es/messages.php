@@ -79,6 +79,11 @@ return [
         ],
     ],
 
+    'contacts' => [
+        'plural' => 'Contactos',
+        'singular' => 'Contacto'
+    ],
+
     'permissions' => [
         'role-list' => 'Ver lista de roles',
         'role-create' => 'Crear un rol',

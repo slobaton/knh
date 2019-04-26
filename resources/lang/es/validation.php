@@ -171,5 +171,6 @@ return [
         'time'                  => 'hora',
         'subject'               => 'asunto',
         'message'               => 'mensaje',
+        'partner_email'         => 'correo electrónico',
     ],
 ];
