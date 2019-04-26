@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-9">
+    <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
           <strong>{{ __('Nombre del proyecto') }} :</strong>
           {!!
@@ -15,7 +15,8 @@
           !!}
         </div>
     </div>
-    <div class="col-xs-12 col-sm-12 col-md-3">
+
+    <div class="col-xs-12 col-sm-12 col-md-6">
         <div class="form-group">
             <strong>
                 {{ __('Fecha de inicio') }} :
@@ -27,12 +28,31 @@
                     array(
                         'class' => 'form-control',
                         'required' => 'required',
-                        'id' => 'datepicker'
+                        'id' => 'createdAt'
                     )
                 );
             !!}
         </div>
     </div>
+    <div class="col-xs-12 col-sm-12 col-md-6">
+        <div class="form-group">
+            <strong>
+                {{ __('Fecha de finalización') }} :
+            </strong>
+            {!!
+                Form::text(
+                    'created_date',
+                    null,
+                    array(
+                        'class' => 'form-control',
+                        'required' => 'required',
+                        'id' => 'endAt'
+                    )
+                );
+            !!}
+        </div>
+    </div>
+
     <div class="col-xs-12 col-sm-12 col-md-6">
         <div class="form-group">
           <strong>{{ __('Código del proyecto') }} :</strong>

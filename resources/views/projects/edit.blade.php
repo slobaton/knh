@@ -55,7 +55,12 @@
 @section('scripts')
 <script src="{{ asset('js/gijgo.datetime.js') }}" type="text/javascript"></script>
     <script>
-        $('#datepicker').datepicker({
+        $('#createdAt').datepicker({
+            uiLibrary: 'bootstrap4',
+            format: 'dd-mm-yyyy'
+        });
+
+        $('#endAt').datepicker({
             uiLibrary: 'bootstrap4',
             format: 'dd-mm-yyyy'
         });

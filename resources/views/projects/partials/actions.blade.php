@@ -7,7 +7,7 @@
     data-placement="bottom"
     title="{{ __('Editar proyecto') }}"
 >
-    <i class="fas fa-edit"></i>
+    <i class="fas fa-edit"></i> {{ __('Editar') }}
 </a>
 @endcan
 @can('project-show')
@@ -19,7 +19,7 @@
     data-placement="bottom"
     title="{{ __('Ver proyecto') }}"
 >
-    <i class="fas fa-eye"></i>
+    <i class="fas fa-eye"></i> {{ __('Ver') }}
 </a>
 @endcan
 @can('project-upload')
@@ -31,7 +31,7 @@
     title="{{ __('Subir archivo al servidor') }}"
     href="{{ route('projects.upload', $project->id) }}"
 >
-    <i class="fas fa-file-upload"></i>
+    <i class="fas fa-file-upload"></i> {{ __('Subir archivo') }}
 </a>
 @endcan
 @can('project-delete')
@@ -45,7 +45,7 @@
 !!}
   {!!
     Form::button(
-      '<i class="fas fa-trash-alt"></i>',
+      '<i class="fas fa-trash-alt"></i> Eliminar',
       [
         'type' => 'submit',
         'class' => 'btn btn-danger btn-sm text-white',

@@ -39,7 +39,7 @@
           <tr>
             <th>{{ __('Código') }}</th>
             <th>{{ __('Nombre') }}</th>
-            <th width="280px">{{ __('Acciones') }}</th>
+            <th>{{ __('Acciones') }}</th>
           </tr>
         </thead>
       </table>

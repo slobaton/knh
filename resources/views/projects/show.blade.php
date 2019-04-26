@@ -78,8 +78,8 @@
                 $document_types = array_keys(config('constants.documents_types'));
             @endphp
             <div class="row">
-            @foreach ($document_types as $type)
-                @if (! is_null($documents->get($type)))
+                @foreach ($document_types as $type)
+                    @if (! is_null($documents->get($type)))
                         <div class="col-sm-3 col-md-3">
                             <strong>
                                 {{ __(config('constants.documents_types.' . $type)) }}
@@ -87,16 +87,16 @@
                             @foreach ($documents[$type] as $document)
                             <div class="col-sm-12 col-md-12">
                                 <a href="{{ Storage::url($document->file) }}">
-                                        {{ $document->name }}
-                                        <i class="fas fa-file-pdf"></i>
-                                    </a>
+                                    {{ $document->name }}
+                                    <i class="fas fa-file-pdf"></i>
+                                </a>
                             </div>
                             @endforeach
                         </div>
                         <br>
-                        @endif
-                        @endforeach
-                    </div>
+                    @endif
+                @endforeach
+            </div>
         </div>
     </div>
 @endsection
