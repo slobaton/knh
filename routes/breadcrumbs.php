@@ -85,10 +85,24 @@ Breadcrumbs::for('partners.edit', function ($trail) {
         route('partners.create')
     );
 });
-Breadcrumbs::for('partners.show', function ($trail) {
+Breadcrumbs::for('partners.show', function ($trail, $partner) {
     $trail->parent('partners.index');
     $trail->push(
         ucfirst(__('messages.partners.breadcrumbs.show')),
+        route('partners.show', $partner)
+    );
+});
+Breadcrumbs::for('contacts.create', function ($trail, $partner) {
+    $trail->parent('partners.show', $partner);
+    $trail->push(
+        ucfirst(__('Crer contacto')),
+        route('partners.create')
+    );
+});
+Breadcrumbs::for('contacts.edit', function ($trail, $partner) {
+    $trail->parent('partners.show', $partner);
+    $trail->push(
+        ucfirst(__('Editar contacto')),
         route('partners.create')
     );
 });

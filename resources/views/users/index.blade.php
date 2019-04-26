@@ -19,15 +19,17 @@
 @endif
 <div class="row">
   <div class="col-lg-12 margin-tb">
-    <div class="float-right">
-      <a
-        class="btn btn-primary"
-        href="{{ route('users.create') }}"
-      >
-        <i class="fas fa-user-plus"></i>
-        {{ __('messages.common.create', ['name' => __('messages.users.user')]) }}
-      </a>
-    </div>
+    @can('user-create')
+        <div class="float-right">
+            <a
+                class="btn btn-primary"
+                href="{{ route('users.create') }}"
+            >
+                <i class="fas fa-user-plus"></i>
+                {{ __('messages.common.create', ['name' => __('messages.users.user')]) }}
+            </a>
+        </div>
+    @endcan
   </div>
 </div>
 <br>

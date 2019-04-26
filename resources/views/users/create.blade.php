@@ -27,15 +27,9 @@
     {!! Form::open(array('route' => 'users.store','method'=>'POST')) !!}
     <div class="row">
       @include('users.partials.form')
-      <div class="col-xs-12 col-sm-12 col-md-12">
-        <div class="form-group">
-          <strong>Role:</strong>
-          {!! Form::select('roles[]', $roles,[], array('class' => 'form-control','multiple')) !!}
-        </div>
-      </div>
       <div class="col-xs-12 col-sm-12 col-md-12 text-center">
         <button type="submit" class="btn btn-primary float-right">
-          <i class="fas fa-share-square"></i> {{ __('Enviar') }}
+          <i class="fas fa-share-square"></i> {{ __('Crear usuario') }}
         </button>
       </div>
     </div>

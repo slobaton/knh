@@ -11,8 +11,16 @@
 ])
 @endcomponent
 
+@php
+    $title = $user->name;
+@endphp
+
 @section('content')
-  @component('components.form', ['title' => 'Formulario', 'col' => '10'])
+  @component('components.success_message', [
+      'message' => 'La información del usuario ha sido actualizada'
+  ])
+  @endcomponent
+  @component('components.form', ['title' => "Usuario: {$title}", 'col' => '10'])
   @if (count($errors) > 0)
     <div class="alert alert-danger">
       <strong>Oops!</strong> {{ __('messages.common_crud.error.general') }}<br><br>
@@ -27,15 +35,9 @@
   {!! Form::model($user, ['method' => 'PATCH','route' => ['users.update', $user->id]]) !!}
     <div class="row">
       @include('users.partials.form')
-      <div class="col-xs-12 col-sm-12 col-md-12">
-        <div class="form-group">
-          <strong>Role:</strong>
-          {!! Form::select('roles[]', $roles, $userRole, array('class' => 'form-control','multiple')) !!}
-        </div>
-      </div>
       <div class="col-xs-12 col-sm-12 col-md-12 text-center">
         <button type="submit" class="btn btn-primary float-right">
-          <i class="fas fa-share-square"></i> {{ __('Enviar') }}
+          <i class="fas fa-share-square"></i> {{ __('Actualizar usuario') }}
         </button>
       </div>
     </div>
