@@ -10,6 +10,10 @@
             </h5>
         </li>
     </span>
-    {{ Breadcrumbs::render($breadcrumb) }}
+    @if (isset($param))
+        {{ Breadcrumbs::render($breadcrumb, $param) }}
+    @else
+        {{ Breadcrumbs::render($breadcrumb) }}
+    @endif
 </div>
 @endsection

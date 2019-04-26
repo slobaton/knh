@@ -17,7 +17,14 @@ $title = strtoupper(
 @endcomponent
 
 @section('content')
-  @component('components.form', ['title' => 'Formulario', 'col' => '10'])
+  @component(
+    'components.form',
+    [
+      'title' => 'Formulario de creación de usuario',
+      'info' => 'Los campos (*) son requeridos',
+      'col' => '10'
+    ]
+  )
     @if (count($errors) > 0)
       <div class="alert alert-danger">
         <strong>Oops!</strong> {{ __('messages.common_crud.error.general') }}<br><br>
@@ -28,8 +35,7 @@ $title = strtoupper(
         </ul>
       </div>
     @endif
-
-    {!! 
+    {!!
         Form::open(
           array(
               'route' => 'partners.store',

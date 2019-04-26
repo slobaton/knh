@@ -31,12 +31,13 @@
         </ul>
       </div>
     @endif
+    {{-- {{ dd($partner) }} --}}
     {!!
         Form::model(
             $partner,
             [
                 'method' => 'PATCH',
-                'route' => ['partners.update', $partner->partner_id],
+                'route' => ['partners.update', $partner->id],
                 'files' => true
             ]
         )

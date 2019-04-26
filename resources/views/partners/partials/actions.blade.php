@@ -7,7 +7,7 @@
   data-placement="bottom"
   title="{{ __('Editar socio') }}"
 >
-  <i class="fas fa-edit"></i>
+  <i class="fas fa-edit"></i>{{ __('Editar') }}
 </a>
 @endcan
 @can('partner-show')
@@ -19,7 +19,7 @@
   data-placement="bottom"
   title="{{ __('Ver socio') }}"
 >
-  <i class="fas fa-eye"></i>
+  <i class="fas fa-eye"></i>{{ __('Ver') }}
 </a>
 @endcan
 @can('partner-delete')
@@ -33,7 +33,7 @@
 !!}
   {!!
     Form::button(
-      '<i class="fas fa-trash-alt"></i>',
+      '<i class="fas fa-trash-alt"></i>Eliminar',
       [
         'type' => 'submit',
         'class' => 'btn btn-danger btn-sm text-white',

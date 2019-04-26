@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12">
       <div class="form-group">
-        <strong>{{ __('messages.users.name') }} :</strong>
+        <strong>(*){{ __('messages.users.name') }} :</strong>
         {!!
           Form::text(
             'partner_name',
@@ -18,7 +18,7 @@
 
     <div class="col-xs-12 col-sm-12 col-md-6">
       <div class="form-group">
-        <strong>{{ __('messages.login.email') }} :</strong>
+        <strong>(*){{ __('messages.login.email') }} :</strong>
         {!!
           Form::email(
             'partner_email',
@@ -84,20 +84,8 @@
             !!}
       </div>
     </div>
-    <div class="col-xs-12 col-sm-12 col-md-6">
-        <strong>{{ __('Fotografía: ') }} :</strong>
-        <div class="form-group">
-            <input
-              type="file"
-              id="partnerImage"
-              name="partner_photo"
-              lang="es"
-              accept=".jpg,.gif,.png,.pdf,.jpeg"
-            >
-        </div>
-    </div>
 </div>
-@include('partners.partials.contact')
+{{-- @include('partners.partials.contact') --}}
 <div class="col-xs-12 col-sm-12 col-md-12 text-center">
     <button type="submit" class="btn btn-primary float-right">
         <i class="fas fa-share-square"></i> {{ __('Enviar') }}
