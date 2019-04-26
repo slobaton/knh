@@ -25,9 +25,11 @@
         <strong>Permissions:</strong>
         @if(!empty($rolePermissions))
         <ul>
-          @foreach($rolePermissions as $v)
+          @foreach($rolePermissions as $value)
             <li>
-              <label class="badge badge-pill badge-primary">{{ $v->name }}</label>
+                <label class="badge badge-pill badge-primary">
+                  {{ __('messages.permissions.'.$value->name) }}
+                </label>
             </li>
           @endforeach
         </ul>

@@ -37,9 +37,18 @@
           <br/>
           <div class="row">
           @foreach($permission as $value)
-          <div class="col-xs-12 col-md-2">
-            <label>{{ Form::checkbox('permission[]', $value->id, in_array($value->id, $rolePermissions) ? true : false, array('class' => 'name')) }}
-            {{ $value->name }}</label>
+          <div class="col-xs-12 col-md-3">
+            <label>
+                {{
+                    Form::checkbox(
+                        'permission[]',
+                        $value->id,
+                        in_array($value->id, $rolePermissions) ? true : false,
+                        array('class' => 'name')
+                    )
+                }}
+                {{ __('messages.permissions.'.$value->name) }}
+            </label>
           </div>
           @endforeach
           </div>

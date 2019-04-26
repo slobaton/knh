@@ -21,15 +21,17 @@
 
 <div class="row">
   <div class="col-lg-12 margin-tb">
-    <div class="float-right">
-      <a
-        class="btn btn-primary"
-        href="{{ route('roles.create') }}"
-      >
-        <i class="fa fa-plus" aria-hidden="true"></i>
-        {{ __('messages.common.create', ['name' => __('messages.roles.role')]) }}
-      </a>
-    </div>
+    @can('role-create')
+        <div class="float-right">
+            <a
+                class="btn btn-primary"
+                href="{{ route('roles.create') }}"
+            >
+                <i class="fa fa-plus" aria-hidden="true"></i>
+                {{ __('messages.common.create', ['name' => __('messages.roles.role')]) }}
+            </a>
+        </div>
+    @endcan
   </div>
 </div>
 <br>
