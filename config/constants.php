@@ -17,5 +17,8 @@ return [
         'budgets' => 'Presupuestos',
         'reports' => 'Reportes',
         'monitoring' => 'Monitoreo',
+    ],
+    'years' => [
+        'init' => 2000,
     ]
 ];

@@ -202,13 +202,15 @@ class ProjectController extends Controller
             'project_name' => 'required|string',
             'coordinator_name' => 'required|string',
             'coordinator_phone' => 'required|numeric|max:99999999',
-            'coordinator_cellphone' => 'numeric|max:99999999',
+            'coordinator_cellphone' => 'nullable|numeric|max:99999999',
             'coordinator_email' => 'required|email',
             'location' => 'string',
             'city' => 'required|string',
             'description' => 'nullable|string',
             'additional_coordinator_info' => 'nullable|string|max:350',
-            'partner_id' => 'required|numeric'
+            'partner_id' => 'required|numeric',
+            'created_date' => 'required|string',
+            'end_date' => 'required|string',
         ]);
     }
 }

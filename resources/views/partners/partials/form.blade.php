@@ -35,7 +35,7 @@
 
     <div class="col-xs-12 col-sm-12 col-md-6">
       <div class="form-group">
-        <strong>{{ __('messages.common.phone') }} :</strong>
+        <strong>(*){{ __('messages.common.phone') }} :</strong>
         {!!
           Form::number(
             'partner_phone',
@@ -59,8 +59,7 @@
             null,
             array(
               'placeholder' => __('messages.common.location'),
-              'class' => 'form-control',
-              'required' => 'required'
+              'class' => 'form-control'
             )
           )
         !!}
@@ -69,7 +68,7 @@
 
     <div class="col-xs-12 col-sm-12 col-md-6">
         <div class="form-group">
-            <strong>{{ __('messages.common.city') }} :</strong>
+            <strong>(*){{ __('messages.common.city') }} :</strong>
             {!!
                 Form::select(
                   'partner_city',

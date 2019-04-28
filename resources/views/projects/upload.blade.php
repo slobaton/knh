@@ -63,6 +63,23 @@
             </div>
             <div class="col-xs-12 col-sm-12 col-md-6">
                 <div class="form-group">
+                    <strong>{{ __('Año: ') }}</strong>
+                    {!!
+                        Form::select(
+                            'type',
+                            Config::get('constants.documents_types'),
+                            null,
+                            [
+                                'placeholder' => '-- Escoja un año --',
+                                'class' => 'custom-select',
+                                'required' => 'required'
+                            ]
+                        )
+                    !!}
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6">
+                <div class="form-group">
                     <strong>{{ __('Tipo de documento: ') }}</strong>
                     {!!
                         Form::select(

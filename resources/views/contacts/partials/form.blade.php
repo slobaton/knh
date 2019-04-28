@@ -3,7 +3,7 @@
     <div class="form-row">
         <div class="col-xs-12 col-sm-12 col-md-6">
             <div class="form-group">
-            <strong>{{ __('Nombre del contacto: ') }}</strong>
+            <strong>(*){{ __('Nombre del contacto: ') }}</strong>
             {!!
                 Form::text(
                     'name',
@@ -19,7 +19,7 @@
         </div>
         <div class="col-xs-12 col-sm-12 col-md-6">
             <div class="form-group">
-            <strong>{{ __('Cargo que ocupa: ') }}</strong>
+            <strong>(*){{ __('Cargo que ocupa: ') }}</strong>
             {!!
                 Form::text(
                     'position',
@@ -57,7 +57,7 @@
         </div>
         <div class="col-xs-12 col-sm-12 col-md-6">
                 <div class="form-group">
-            <strong>{{ __('Teléfono celular:') }}</strong>
+            <strong>(*){{ __('Teléfono celular:') }}</strong>
             {!!
                 Form::number(
                     'cellphone',
@@ -88,7 +88,7 @@
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-            <strong>{{ __('Direccion: ') }} </strong>
+            <strong>{{ __('Dirección: ') }} </strong>
             {!!
                 Form::text(
                     'location',

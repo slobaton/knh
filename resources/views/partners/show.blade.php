@@ -24,17 +24,19 @@
     </div>
     @endif
     <div class="row">
+        @can('contact-create')
         <div class="col-lg-12">
             <div class="float-right">
                 <a
-                    class="btn btn-primary"
-                    href="{{ url('partners/'.$partner->id.'/contacts/create') }}"
+                class="btn btn-primary"
+                href="{{ url('partners/'.$partner->id.'/contacts/create') }}"
                 >
                 <i class="fa fa-plus" aria-hidden="true"></i>
-                    {{ __('Agregar contacto') }}
+                {{ __('Agregar contacto') }}
                 </a>
             </div>
         </div>
+        @endcan
         <div
             class="bd-callout bd-callout-info col-sm-12 col-md-12"
             style="background: white;"

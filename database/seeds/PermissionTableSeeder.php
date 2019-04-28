@@ -43,6 +43,10 @@ class PermissionTableSeeder extends Seeder
             'project-delete',
             'project-upload',
             'project-show',
+        //  contact
+            'contact-create',
+            'contact-update',
+            'contact-delete',
         ];
 
         foreach ($permissions as $permission) {
@@ -50,17 +54,26 @@ class PermissionTableSeeder extends Seeder
         }
 
         //Admin
-        $admin = Role::create(['name' => 'admin']);
+        $superAdmin = Role::create(['name' => 'super_admin']);
 
-        $admin->givePermissionTo([
-            'role-list',
-            'role-edit',
-            'role-show',
-            'role-delete',
-            'role-create'
+        $userAdmin = User::find(1); //Sergio Lobaton
+        $userAdmin->assignRole($superAdmin);
+
+        $common = Role::create(['name' => 'common']);
+        $common->givePermissionTo([
+            'project-list',
+            'project-create',
+            'project-edit',
+            'project-delete',
+            'project-upload',
+            'project-show',
+            'partner-list',
+            'partner-create',
+            'partner-edit',
+            'partner-delete',
+            'partner-show',
         ]);
-
-        $user = User::find(1); //Sergio Lobaton
-        $user->assignRole('admin');
+        $userTest = User::find(2); //Test user
+        $userTest->assignRole($common);
     }
 }

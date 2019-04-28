@@ -17,9 +17,9 @@ class CreatePartnersTable extends Migration
             $table->increments('id');
             $table->string('partner_name');
             $table->string('partner_email')->unique();
-            $table->string('partner_phone', 15)->nullable();
+            $table->string('partner_phone', 15);
             $table->string('partner_location', 350)->nullable();
-            $table->string('partner_city')->nullable();
+            $table->string('partner_city');
             $table->string('partner_photo')->nullable();
             $table->timestamps();
         });

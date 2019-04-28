@@ -32,6 +32,13 @@
                     {{ Carbon\Carbon::parse($project->created_date)->format('d/m/Y') }}
                 </em>
             </p>
+                <strong>{{ __('Fecha de conclusión: ') }}</strong>
+                <em>
+                    {{ Carbon\Carbon::parse($project->end_date)->format('d/m/Y') }}
+                </em>
+            <p>
+
+            </p>
             <p>
                 <strong>{{ __('Socio: ') }}</strong>
                 <a href="{{ route('partners.show', $partner->id) }}">

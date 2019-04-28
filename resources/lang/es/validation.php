@@ -172,5 +172,7 @@ return [
         'subject'               => 'asunto',
         'message'               => 'mensaje',
         'partner_email'         => 'correo electrónico',
+        'location'              => 'Dirección',
+        'end_date'              => 'Fecha de conclusión',
     ],
 ];

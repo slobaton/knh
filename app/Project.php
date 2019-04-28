@@ -18,5 +18,6 @@ class Project extends Model
         'description',
         'partner_id',
         'created_date',
+        'end_date',
     ];
 }

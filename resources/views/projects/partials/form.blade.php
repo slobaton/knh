@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
-          <strong>{{ __('Nombre del proyecto') }} :</strong>
+          <strong>(*){{ __('Nombre del proyecto') }} :</strong>
           {!!
             Form::text(
               'project_name',
@@ -19,7 +19,7 @@
     <div class="col-xs-12 col-sm-12 col-md-6">
         <div class="form-group">
             <strong>
-                {{ __('Fecha de inicio') }} :
+                (*){{ __('Fecha de inicio') }} :
             </strong>
             {!!
                 Form::text(
@@ -32,16 +32,19 @@
                     )
                 );
             !!}
+            <small id="createdAt" class="form-text text-muted">
+                dd-mm-yyyy
+            </small>
         </div>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-6">
         <div class="form-group">
             <strong>
-                {{ __('Fecha de finalización') }} :
+                (*){{ __('Fecha de conclusión') }} :
             </strong>
             {!!
                 Form::text(
-                    'created_date',
+                    'end_date',
                     null,
                     array(
                         'class' => 'form-control',
@@ -50,12 +53,15 @@
                     )
                 );
             !!}
+            <small id="endAt" class="form-text text-muted">
+                dd-mm-yyyy
+            </small>
         </div>
     </div>
 
     <div class="col-xs-12 col-sm-12 col-md-6">
         <div class="form-group">
-          <strong>{{ __('Código del proyecto') }} :</strong>
+          <strong>(*){{ __('Código del proyecto') }} :</strong>
           {!!
             Form::number(
               'project_code',
@@ -73,7 +79,7 @@
     </div>
     <div class="col-xs-12 col-sm-12 col-md-6">
         <div class="form-group">
-            <strong>{{ __('messages.partners.plural') }} :</strong>
+            <strong>(*){{ __('messages.partners.plural') }} :</strong>
             {!!
                 Form::select(
                   'partner_id',
@@ -108,7 +114,7 @@
     {{-- coordinator --}}
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
-          <strong>{{ __('Nombre del coordinador') }} :</strong>
+          <strong>(*){{ __('Nombre del coordinador') }} :</strong>
           {!!
             Form::text(
               'coordinator_name',
@@ -124,7 +130,7 @@
     </div>
     <div class="col-xs-12 col-sm-12 col-md-6">
         <div class="form-group">
-          <strong>{{ __('messages.login.email') }} :</strong>
+          <strong>(*){{ __('messages.login.email') }} :</strong>
           {!!
             Form::email(
               'coordinator_email',
@@ -140,7 +146,7 @@
     </div>
     <div class="col-xs-12 col-sm-12 col-md-6">
         <div class="form-group">
-            <strong>{{ __('messages.common.city') }} :</strong>
+            <strong>(*){{ __('messages.common.city') }} :</strong>
             {!!
                 Form::select(
                   'city',
@@ -157,7 +163,7 @@
     </div>
     <div class="col-xs-12 col-sm-12 col-md-6">
         <div class="form-group">
-          <strong>{{ __('Número de celular(coordinador)') }} :</strong>
+          <strong>(*){{ __('Número de celular(coordinador)') }} :</strong>
           {!!
             Form::number(
               'coordinator_cellphone',

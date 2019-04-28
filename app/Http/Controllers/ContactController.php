@@ -8,6 +8,12 @@ use Illuminate\Support\Facades\Storage;
 
 class ContactController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:contact-create', ['only' => ['create','store']]);
+        $this->middleware('permission:contact-update', ['only' => ['edit','update']]);
+        $this->middleware('permission:contact-delete', ['only' => ['destroy']]);
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -29,8 +35,10 @@ class ContactController extends Controller
         $this->validate($request, [
             'name' => 'required|string',
             'position' => 'required|string',
-            'cellphone' => 'required|numeric',
-            'partner_id' => 'required|string'
+            'cellphone' => 'required|string',
+            'phone' => 'nullable|string',
+            'location' => 'nullable|string',
+            'partner_id' => 'required|numeric'
         ]);
 
         try {
@@ -91,8 +99,10 @@ class ContactController extends Controller
         $this->validate($request, [
             'name' => 'required|string',
             'position' => 'required|string',
-            'cellphone' => 'required|numeric',
-            'contact_id' => 'required|string'
+            'cellphone' => 'required|string',
+            'phone' => 'sometimes|nullable|string',
+            'location' => 'sometimes|nullable|string',
+            'contact_id' => 'required|numeric'
         ]);
 
         try {

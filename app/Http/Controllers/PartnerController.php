@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
 use App\Partner;
-use App\Contact;
 use DB;
 
 class PartnerController extends Controller
@@ -162,7 +161,7 @@ class PartnerController extends Controller
             'partner_name' => 'required|string|max:255',
             'partner_email' => 'required|email|max:255|unique:partners,partner_email,'.$id,
             'partner_phone' => 'required|max:15',
-            'partner_location' => 'required|max:350',
+            'partner_location' => 'sometimes|max:350',
             'partner_city' => 'required|max:255',
         ]);
     }

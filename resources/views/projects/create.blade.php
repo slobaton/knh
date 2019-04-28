@@ -23,7 +23,11 @@ $title = strtoupper(
 @endcomponent
 
 @section('content')
-  @component('components.form', ['title' => 'Formulario', 'col' => '10'])
+    @component('components.form', [
+        'title' => 'Formulario de creación de un proyecto',
+        'col' => '10',
+        'info' => 'Los campos (*) son requeridos',
+    ])
     @if (count($errors) > 0)
       <div class="alert alert-danger">
         <strong>Oops!</strong> {{ __('messages.common_crud.error.general') }}<br><br>

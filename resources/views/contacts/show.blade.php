@@ -40,7 +40,6 @@
                         'route' => ['contacts.destroy', $contact->id],
                         'style'=>'display:inline',
                         'class' => 'delete-action',
-                        'contact-name' => $contact->name
                     ])
                 !!}
                 {!!
@@ -51,7 +50,8 @@
                             'class' => 'btn btn-danger btn-sm text-white',
                             'data-toggle' => 'tooltip',
                             'data-placement' => 'bottom',
-                            'title' => 'Eliminar socio'
+                            'title' => 'Eliminar socio',
+                            'contact-name' => $contact->name
                         ]
                     )
                 !!}
