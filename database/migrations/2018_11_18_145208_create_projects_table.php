@@ -18,15 +18,15 @@ class CreateProjectsTable extends Migration
             $table->string('project_code', 6)->unique();
             $table->string('project_name');
             $table->string('coordinator_name');
-            $table->string('coordinator_phone', 8);
-            $table->string('coordinator_cellphone', 8)->nullable();
+            $table->string('coordinator_phone', 8)->nullable();
+            $table->string('coordinator_cellphone', 8);
             $table->string('coordinator_email');
             $table->string('location')->nullable();
             $table->string('city');
             $table->string('description', 350)->nullable();
             $table->string('additional_coordinator_info', 350)->nullable();
             $table->string('created_date');
-            $table->string('end_date');
+            $table->string('end_date')->nullable();
             $table->unsignedInteger('partner_id')->nullable();
             $table->timestamps();
 

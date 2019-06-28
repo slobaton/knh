@@ -152,6 +152,13 @@ class ProjectController extends Controller
                     compact('document')
                 );
             })
+            ->editColumn('files', function($document) {
+                $files = json_decode($document->files);
+                return view(
+                    'projects.partials.files',
+                    compact('files')
+                );
+            })
             ->editColumn('created_at', function($document) {
                 return \Carbon\Carbon::parse($document->created_at, 'America/La_Paz')
                     ->format('d/m/y H:m:s');
@@ -159,26 +166,56 @@ class ProjectController extends Controller
             ->editColumn('type', function($document) {
                 return config('constants.documents_types.'.$document->type);
             })
-            ->rawColumns(['action'])
+            ->rawColumns(['action', 'files'])
+            ->make(true);
+    }
+
+    public function getObservations($projectId)
+    {
+        $documents = Document::where('project_id', $projectId)
+            ->where('type', '=', 'observations');
+        return Datatables::of($documents)
+            ->editColumn('files', function($document) {
+                $files = json_decode($document->files);
+                return view(
+                    'projects.partials.files',
+                    compact('files')
+                );
+            })
+            ->editColumn('created_at', function($document) {
+                return \Carbon\Carbon::parse($document->created_at, 'America/La_Paz')
+                    ->format('d/m/y H:m:s');
+            })
+            ->editColumn('type', function($document) {
+                return config('constants.documents_types.'.$document->type);
+            })
+            ->rawColumns(['files'])
             ->make(true);
     }
 
     public function uploadFile(Request $request, $id)
     {
         $this->validate($request, [
-            'file' => 'required|file|mimes:pdf,doc,docx',
             'name' => 'required|string',
             'type' => 'required|string',
-            'project_id' => 'required|string'
+            'project_id' => 'required|string',
+            'files' => 'required',
+            'files.*' => 'file|mimes:pdf,doc,docx'
         ]);
 
         try {
             DB::beginTransaction();
             $inputs = $request->all();
-            if ($request->file('file')) {
-                $file = $request->file('file')->store('public/documents');
-                $inputs['file'] = $file;
+            $files = [];
+
+            foreach ($request->file('files') as $file) {
+                $name=$file->getClientOriginalName();
+                $fileName = $file->storeAs('public/documents', $name);
+                array_push($files, $fileName);
             }
+
+            $inputs['files'] = json_encode($files);
+
             Document::create($inputs);
             DB::commit();
         } catch(\Exception $e) {
@@ -201,8 +238,8 @@ class ProjectController extends Controller
             'project_code' => 'required|numeric|max:999999',
             'project_name' => 'required|string',
             'coordinator_name' => 'required|string',
-            'coordinator_phone' => 'required|numeric|max:99999999',
-            'coordinator_cellphone' => 'nullable|numeric|max:99999999',
+            'coordinator_phone' => 'nullable|numeric|max:99999999',
+            'coordinator_cellphone' => 'required|numeric|max:99999999',
             'coordinator_email' => 'required|email',
             'location' => 'string',
             'city' => 'required|string',

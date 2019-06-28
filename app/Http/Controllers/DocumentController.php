@@ -88,10 +88,14 @@ class DocumentController extends Controller
     {
         $document = Document::findOrFail($id);
 
-        Storage::delete($document->file);
+        $files = json_decode($document->files);
+
+        foreach ($files as $file) {
+            Storage::delete($file);
+        }
         $document->delete();
 
-        return back()->with('success','Archivo eliminado');
+        return back()->with('success','Archivo(s) eliminado(s)');
 
     }
 }

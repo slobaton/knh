@@ -110,5 +110,10 @@ return [
         'project-delete' => 'Eliminar proyecto',
         'project-upload' => 'Subir documento',
         'project-show' => 'Ver proyecto',
+    //    contact
+        'contact-create' => 'Crear contacto',
+        'contact-update' => 'Actualizar contacto',
+        'contact-delete' => 'Crear eliminar',
+
     ]
 ];

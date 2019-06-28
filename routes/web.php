@@ -45,6 +45,8 @@ Route::group(['middleware' => ['auth']], function() {
         ->name('projects.data');
     Route::get('projects/{project}/documents', 'ProjectController@getDocuments')
         ->name('projects.documents');
+    Route::get('projects/{project}/observations', 'ProjectController@getObservations')
+        ->name('projects.observations');
 
     //documents
     Route::resource('documents', 'DocumentController');

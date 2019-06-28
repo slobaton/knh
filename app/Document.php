@@ -10,6 +10,12 @@ class Document extends Model
         'type',
         'name',
         'project_id',
-        'file',
+        'year',
+        'description',
+        'files'
+    ];
+
+    protected $casts = [
+        'shifts' => 'array'
     ];
 }

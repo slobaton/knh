@@ -2,6 +2,7 @@
 
 @section('css')
   <link rel="stylesheet" href={{ asset('css/callout.css') }}>
+  <link rel="stylesheet" type="text/css" href="{{ asset('css/dataTables.bootstrap4.min.css') }}">
 @endsection
 
 @component('partials.custombreadcrumbs', [
@@ -82,10 +83,12 @@
             </h5>
             <hr>
             @php
-                $document_types = array_keys(config('constants.documents_types'));
+                $types = config('constants.documents_types');
+                unset($types['observations']);
+                $documentTypes = array_keys($types);
             @endphp
             <div class="row">
-                @foreach ($document_types as $type)
+                @foreach ($documentTypes as $type)
                     @if (! is_null($documents->get($type)))
                         <div class="col-sm-3 col-md-3">
                             <strong>
@@ -93,10 +96,15 @@
                             </strong>
                             @foreach ($documents[$type] as $document)
                             <div class="col-sm-12 col-md-12">
-                                <a href="{{ Storage::url($document->file) }}">
-                                    {{ $document->name }}
-                                    <i class="fas fa-file-pdf"></i>
-                                </a>
+                                {{ $document->name }}
+                                <br>
+                                @foreach (json_decode($document->files) as $file)
+                                    <a href="{{ Storage::url($file) }}">
+                                        <i class="fas fa-file-pdf"></i>
+                                        {{ last(explode('/', $file))}}
+                                    </a>
+                                    <br>
+                                @endforeach
                             </div>
                             @endforeach
                         </div>
@@ -106,4 +114,42 @@
             </div>
         </div>
     </div>
+    <h5 class="text-center">
+        <strong>{{ __('Observaciones del correo') }}</strong>
+    </h5>
+    <hr>
+    <table id="datatable" class="table table-striped table-bordered" style="width:100%">
+        <thead>
+            <tr>
+            <th>Nombre</th>
+            <th>Fecha Creacion</th>
+            <th>Descripción</th>
+            <th>Documentos</th>
+            </tr>
+        </thead>
+    </table>
+    @component('components.datatable', [
+        'modalTitle' => '',
+        'route' => 'projects.observations',
+        'param' => $project->id,
+        'order' => [[2, 'desc']],
+        'columns' => [
+            [
+                'data' => 'name',
+                'name' => 'name',
+            ], [
+                'data' => 'created_at',
+                'name' => 'created_at',
+            ], [
+                'data' => 'description',
+                'name' => 'description',
+            ],[
+                'data' => 'files',
+                'name' => 'files',
+                'orderable' => false,
+                'searchable' => false
+            ]
+        ]
+    ])
+    @endcomponent
 @endsection

@@ -16,9 +16,10 @@ class CreateDocumentsTable extends Migration
         Schema::create('documents', function (Blueprint $table) {
             $table->increments('id');
             $table->string('type');
-            $table->string('file');
+            $table->json('files');
             $table->string('name');
             $table->string('year', 4);
+            $table->text('description')->nullable();
             $table->unsignedInteger('project_id');
             $table->timestamps();
 

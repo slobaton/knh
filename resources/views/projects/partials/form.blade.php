@@ -189,7 +189,6 @@
               array(
                 'placeholder' => __('Número de télefono'),
                 'class' => 'form-control',
-                'required' => 'required',
                 'min' => 1,
                 'max' => 99999999
               )
