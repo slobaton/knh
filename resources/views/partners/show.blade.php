@@ -79,7 +79,7 @@
                     {{ __('Última actualización:') }}
                 </strong>
                 {{
-                    date('d/m/Y h:m:s', strtotime(Auth::user()->updated_at))
+                    date('d/m/Y h:m:s', strtotime($partner->updated_at))
                 }}
             </p>
         </div>
