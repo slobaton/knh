@@ -139,44 +139,5 @@
           </tr>
         </thead>
     </table>
-    @php
-        $modalTile = __(
-            'messages.common_crud.confirm_message',
-            ['name' => __('documento')]
-        );
-    @endphp
-    @component('components.datatable', [
-        'modalTitle' => $modalTile,
-        'route' => 'projects.documents',
-        'param' => $project->id,
-        'order' => [[2, 'desc']],
-        'columns' => [
-            [
-                'data' => 'name',
-                'name' => 'name',
-            ], [
-                'data' => 'type',
-                'name' => 'type',
-            ], [
-                'data' => 'created_at',
-                'name' => 'created_at',
-            ], [
-                'data' => 'year',
-                'name' => 'year'
-            ],[
-                'data' => 'files',
-                'name' => 'files',
-                'orderable' => false,
-                'searchable' => false
-            ], [
-                'data' => 'action',
-                'name' => 'action',
-                'orderable' => false,
-                'searchable' => false
-            ]
-        ]
-    ])
-    @endcomponent
-
 @endcomponent
 @endsection

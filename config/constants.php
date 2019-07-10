@@ -13,11 +13,13 @@ return [
         'alto' => 'El Alto',
     ],
     'documents_types'  => [
-        'agreements'   => 'Acuerdos',
+        'agreements'   => 'Convenios',
         'budgets'      => 'Presupuestos',
         'reports'      => 'Reportes',
         'monitoring'   => 'Monitoreo',
-        'observations' => 'Observaciones',
+        'programs'     => 'Programas',
+        'sponsorship'  => 'Patrocinio',
+        'others'       => 'Otros',
     ],
     'years' => [
         'init' => 2000,

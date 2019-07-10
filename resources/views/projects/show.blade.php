@@ -82,74 +82,51 @@
                 <strong>{{ __('Documentos del proyecto') }}</strong>
             </h5>
             <hr>
-            @php
-                $types = config('constants.documents_types');
-                unset($types['observations']);
-                $documentTypes = array_keys($types);
-            @endphp
-            <div class="row">
-                @foreach ($documentTypes as $type)
-                    @if (! is_null($documents->get($type)))
-                        <div class="col-sm-3 col-md-3">
-                            <strong>
-                                {{ __(config('constants.documents_types.' . $type)) }}
-                            </strong>
-                            @foreach ($documents[$type] as $document)
-                            <div class="col-sm-12 col-md-12">
-                                {{ $document->name }}
-                                <br>
-                                @foreach (json_decode($document->files) as $file)
-                                    <a href="{{ Storage::url($file) }}">
-                                        <i class="fas fa-file-pdf"></i>
-                                        {{ last(explode('/', $file))}}
-                                    </a>
+            @if (count($documents) !== 0)
+            <div class="clearfix">
+                <a
+                    role="button"
+                    class="btn btn-secondary float-right"
+                    href={{ route('documents.show', $project->id) }}
+                >
+                    {{ __('Ver tabla')}}
+                </a>
+            </div>
+            @endif
+            @if (count($documents) !== 0)
+                @php
+                    $types = config('constants.documents_types');
+                    // unset($types['observations']);
+                    $documentTypes = array_keys($types);
+                @endphp
+                <div class="row">
+                    @foreach ($documentTypes as $type)
+                        @if (! is_null($documents->get($type)))
+                            <div class="col-sm-3 col-md-3">
+                                <strong>
+                                    {{ __(config('constants.documents_types.' . $type)) }}
+                                </strong>
+                                @foreach ($documents[$type] as $document)
+                                <div class="col-sm-12 col-md-12">
+                                    {{ $document->name }}
                                     <br>
+                                    @foreach (json_decode($document->files) as $file)
+                                        <a href="{{ Storage::url($file) }}" target="_blank">
+                                            <i class="fas fa-file-pdf"></i>
+                                            {{ last(explode('/', $file))}}
+                                        </a>
+                                        <br>
+                                    @endforeach
+                                </div>
                                 @endforeach
                             </div>
-                            @endforeach
-                        </div>
-                        <br>
-                    @endif
-                @endforeach
-            </div>
+                            <br>
+                        @endif
+                    @endforeach
+                </div>
+            @else
+            <p class="text-center">{{ _('No existen documentos') }}</p>
+            @endif
         </div>
     </div>
-    <h5 class="text-center">
-        <strong>{{ __('Observaciones del correo') }}</strong>
-    </h5>
-    <hr>
-    <table id="datatable" class="table table-striped table-bordered" style="width:100%">
-        <thead>
-            <tr>
-            <th>Nombre</th>
-            <th>Fecha Creacion</th>
-            <th>Descripción</th>
-            <th>Documentos</th>
-            </tr>
-        </thead>
-    </table>
-    @component('components.datatable', [
-        'modalTitle' => '',
-        'route' => 'projects.observations',
-        'param' => $project->id,
-        'order' => [[2, 'desc']],
-        'columns' => [
-            [
-                'data' => 'name',
-                'name' => 'name',
-            ], [
-                'data' => 'created_at',
-                'name' => 'created_at',
-            ], [
-                'data' => 'description',
-                'name' => 'description',
-            ],[
-                'data' => 'files',
-                'name' => 'files',
-                'orderable' => false,
-                'searchable' => false
-            ]
-        ]
-    ])
-    @endcomponent
 @endsection

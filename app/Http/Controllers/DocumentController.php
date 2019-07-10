@@ -52,7 +52,7 @@ class DocumentController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('projects.partials.table', ['id' => $id]);
     }
 
     /**

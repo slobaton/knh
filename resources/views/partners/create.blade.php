@@ -20,7 +20,7 @@ $title = strtoupper(
   @component(
     'components.form',
     [
-      'title' => 'Formulario de creación de usuario',
+      'title' => 'Formulario de creación de socio',
       'info' => 'Los campos (*) son requeridos',
       'col' => '10'
     ]

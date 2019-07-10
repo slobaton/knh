@@ -77,6 +77,7 @@ return [
             'edit' => 'Editar socio',
             'show' => 'Descripción del socio',
         ],
+        'director_name' => 'Nombre del director(a)'
     ],
 
     'contacts' => [
@@ -113,7 +114,7 @@ return [
     //    contact
         'contact-create' => 'Crear contacto',
         'contact-update' => 'Actualizar contacto',
-        'contact-delete' => 'Crear eliminar',
+        'contact-delete' => 'Eliminar contacto',
 
     ]
 ];
