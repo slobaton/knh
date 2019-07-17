@@ -60,7 +60,7 @@ class RoleController extends Controller
 
 
         return redirect()->route('roles.index')
-                        ->with('success','Role created successfully');
+                        ->with('success','Rol creado exitosamente');
     }
 
     /**
@@ -123,7 +123,7 @@ class RoleController extends Controller
 
 
         return redirect()->route('roles.index')
-                        ->with('success','Role updated successfully');
+                        ->with('success','Rol actualizado exitosamente');
     }
 
     /**
@@ -136,7 +136,7 @@ class RoleController extends Controller
     {
         DB::table("roles")->where('id',$id)->delete();
         return redirect()->route('roles.index')
-            ->with('success','Role deleted successfully');
+            ->with('success','Rol eliminado exitosamente');
     }
 
     // datatables functions

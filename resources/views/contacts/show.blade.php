@@ -33,7 +33,7 @@
             {{ $contact->location }}<br>
         </div>
         <div class="card-body text-right">
-            @can('contact-destroy', Contact::class)
+            @can('contact-delete', Contact::class)
                 {!!
                     Form::open([
                         'method' => 'DELETE',
@@ -58,7 +58,7 @@
                 {!! Form::close()!!}
 
             @endcan
-            @can('contact-edit', Contact::class)
+            @can('contact-update', Contact::class)
                 <a
                 href="{{ url('partners/'.$partner->id.'/contacts/edit', $contact->id) }}"
                     class="btn btn-primary btn-sm">

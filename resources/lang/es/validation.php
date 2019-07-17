@@ -174,5 +174,6 @@ return [
         'partner_email'         => 'correo electrónico',
         'location'              => 'Dirección',
         'end_date'              => 'Fecha de conclusión',
+        'permission'            => 'Permisos'
     ],
 ];
