@@ -172,8 +172,18 @@ return [
         'subject'               => 'asunto',
         'message'               => 'mensaje',
         'partner_email'         => 'correo electrónico',
-        'location'              => 'Dirección',
-        'end_date'              => 'Fecha de conclusión',
-        'permission'            => 'Permisos'
+        'location'              => 'dirección',
+        'end_date'              => 'fecha de conclusión',
+        'permission'            => 'permisos',
+        'partner_name'          => 'nombre',
+        'partner_phone'         => 'teléfono',
+        'partner_city'          => 'ciudad',
+        'project_name'          => 'nombre del proyecto',
+        'project_code'          => 'código del proyecto',
+        'coordinator_name'      => 'nombre del coordinador',
+        'coordinator_email'     => 'correo del coordinador',
+        'partner_id'            => 'socios',
+        'created_date'          => 'fecha de inicio',
+        'coordinator_cellphone' => 'número de celular del coordinador'
     ],
 ];

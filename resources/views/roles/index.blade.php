@@ -12,13 +12,7 @@
 @endcomponent
 
 @section('content')
-
-@if ($message = Session::get('success'))
-<div class="alert alert-success">
-  <p>{{ $message }}</p>
-</div>
-@endif
-
+@component('components.success_message')@endcomponent
 <div class="row">
   <div class="col-lg-12 margin-tb">
     @can('role-create')

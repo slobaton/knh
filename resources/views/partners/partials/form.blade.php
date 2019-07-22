@@ -1,3 +1,9 @@
+@php
+    $partnerName = $errors->first('partner_name') ? 'is-invalid' : '';
+    $partnerEmail = $errors->first('partner_email') ? 'is-invalid' : '';
+    $partnerPhone = $errors->first('partner_phone') ? 'is-invalid' : '';
+    $partnerCity = $errors->first('partner_city') ? 'is-invalid' : '';
+@endphp
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12">
       <div class="form-group">
@@ -8,11 +14,13 @@
             null,
             array(
               'placeholder' => __('messages.users.name'),
-              'class' => 'form-control',
-              'required' => 'required'
+              'class' => "form-control {$partnerName}",
             )
           )
         !!}
+        <div class="invalid-feedback">
+            {{ $errors->first('partner_name') }}
+        </div>
       </div>
     </div>
 
@@ -25,11 +33,13 @@
             null,
             array(
               'placeholder' => __('messages.login.email'),
-              'class' => 'form-control',
-              'required' => 'required'
+              'class' => "form-control {$partnerEmail}",
             )
           )
         !!}
+        <div class="invalid-feedback">
+            {{ $errors->first('partner_email') }}
+        </div>
       </div>
     </div>
 
@@ -42,11 +52,13 @@
             null,
             array(
               'placeholder' => __('messages.common.phone'),
-              'class' => 'form-control',
-              'required' => 'required'
+              'class' => "form-control {$partnerPhone}",
             )
           )
         !!}
+        <div class="invalid-feedback">
+            {{ $errors->first('partner_phone') }}
+        </div>
       </div>
     </div>
 
@@ -76,15 +88,16 @@
                   null,
                   [
                     'placeholder' => '-- Escoja una ciudad --',
-                    'class' => 'custom-select',
-                    'required' => 'required'
+                    'class' => "custom-select {$partnerCity}",
                   ]
                 )
             !!}
-      </div>
+            <div class="invalid-feedback">
+                {{ $errors->first('partner_city') }}
+            </div>
+        </div>
     </div>
 </div>
-{{-- @include('partners.partials.contact') --}}
 <div class="col-xs-12 col-sm-12 col-md-12 text-center">
     <button type="submit" class="btn btn-primary float-right">
         <i class="fas fa-share-square"></i> {{ __('Enviar') }}

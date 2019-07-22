@@ -11,7 +11,11 @@
 @endcomponent
 
 @section('content')
-  @component('components.form', ['title' => 'Formulario', 'col' => '10'])
+  @component('components.form', [
+    'title' => 'Formulario de creación de roles',
+    'col' => '10',
+    'info' => 'Los campos (*) son requeridos',
+  ])
     @if (count($errors) > 0)
       <div class="alert alert-danger">
         <strong>Oops!</strong> {{ __('messages.common_crud.error.general') }}<br><br>
@@ -22,29 +26,35 @@
         </ul>
       </div>
     @endif
-
+    @php
+        $errorName = $errors->first('name') ? 'is-invalid' : '';
+        $errorPermissions = $errors->first('permission') ? 'is-invalid' : '';
+    @endphp
     {!! Form::open(array('route' => 'roles.store','method'=>'POST')) !!}
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>{{ __('Nombre del rol') }}</strong>
-                {!! Form::text('name', null, array('placeholder' => 'Nombre del rol','class' => 'form-control')) !!}
+                <strong>{{ __('(*)Nombre del rol') }}</strong>
+                {!! Form::text('name', null, array('placeholder' => 'Nombre del rol','class' => "form-control {$errorName}")) !!}
+                <div class="invalid-feedback">
+                    {{ $errors->first('name') }}
+                </div>
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>{{ __('Permisos: ') }}</strong>
+                <strong>{{ __('(*)Permisos: ') }}</strong>
                 <br/>
                 <div class="row">
                     @foreach($permission as $value)
                     <div class="col-xs-12 col-md-3">
-                        <label>
+                        <label class="is-invalid">
                             {{
                                 Form::checkbox(
                                     'permission[]',
                                     $value->id,
                                     false,
-                                    array('class' => 'name')
+                                    array('class' => 'name is-invalid')
                                 )
                             }}
                             {{
@@ -53,6 +63,9 @@
                         </label>
                     </div>
                     @endforeach
+                    <div class="invalid-feedback col-xs-12 col-md-12">
+                        {{ $errors->first('permission') }}
+                    </div>
                 </div>
             </div>
         </div>

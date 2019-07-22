@@ -74,7 +74,7 @@
             </p>
             <p>
                 <strong>{{ __('Descripción: ') }}</strong>
-                <em>{{ $project->description }}</em>
+                <em>{{ $project->additional_coordinator_info }}</em>
             </p>
         </div>
         <div class="bd-callout bd-callout-info col-sm-12 col-md-12">

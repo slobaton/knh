@@ -12,7 +12,11 @@
 @endcomponent
 
 @section('content')
-  @component('components.form', ['title' => 'Formulario', 'col' => '10'])
+  @component('components.form', [
+      'title' => 'Formulario de edición de roles',
+      'col' => '10',
+      'info' => 'Los campos (*) son requeridos',
+  ])
     @if (count($errors) > 0)
       <div class="alert alert-danger">
         <strong>Oops!</strong> {{ __('messages.common_crud.error.general') }}<br><br>
@@ -23,12 +27,18 @@
         </ul>
       </div>
     @endif
+    @php
+        $errorName = $errors->first('name') ? 'is-invalid' : '';
+    @endphp
     {!! Form::model($role, ['method' => 'PATCH','route' => ['roles.update', $role->id]]) !!}
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
           <strong>Name:</strong>
-          {!! Form::text('name', null, array('placeholder' => 'Name','class' => 'form-control')) !!}
+          {!! Form::text('name', null, array('placeholder' => 'Name','class' => "form-control {$errorName}")) !!}
+          <div class="invalid-feedback">
+            {{ $errors->first('name') }}
+          </div>
         </div>
       </div>
       <div class="col-xs-12 col-sm-12 col-md-12">

@@ -3,11 +3,11 @@
     $errorEmail = $errors->first('email') ? 'is-invalid' : '';
     $errorPassword = $errors->first('password') ? 'is-invalid' : '';
     $errorConfirmPassword = $errors->first('password_confirmation') ? 'is-invalid' : '';
-    $errorConfirmPassword = $errors->first('password_confirmation') ? 'is-invalid' : '';
+    $errorRoles = $errors->first('roles') ? 'is-invalid' : '';
 @endphp
 <div class="col-xs-12 col-sm-12 col-md-12">
   <div class="form-group">
-    <strong>Nombre:</strong>
+    <strong>(*)Nombre:</strong>
     {!!
         Form::text(
             'name',
@@ -25,7 +25,7 @@
 </div>
 <div class="col-xs-12 col-sm-12 col-md-12">
   <div class="form-group">
-    <strong>Correo electrónico:</strong>
+    <strong>(*)Correo electrónico:</strong>
     {!!
         Form::text(
             'email',
@@ -43,7 +43,7 @@
 </div>
 <div class="col-xs-12 col-sm-12 col-md-6">
   <div class="form-group">
-    <strong>Contraseña:</strong>
+    <strong>(*)Contraseña:</strong>
     {!!
         Form::password(
             'password',
@@ -60,7 +60,7 @@
 </div>
 <div class="col-xs-12 col-sm-12 col-md-6">
   <div class="form-group">
-    <strong>Confirmar contraseña:</strong>
+    <strong>(*)Confirmar contraseña:</strong>
     {!!
         Form::password(
             'password_confirmation',
@@ -79,19 +79,22 @@
     <strong>Roles de usuario:</strong>
     <div class="row">
       @foreach($roles as $value)
-        <div class="col-md-3">
+        <div class="col-md-3 {$errorRoles}">
           <label>
               {!!
                   Form::checkbox(
                       'roles[]',
                       $value->id,
                       null,
-                      array('class' => 'form-control')
+                      array('class' => "form-control {$errorRoles}")
                   )
               !!}
               {{ $value->name }}
           </label>
         </div>
-      @endforeach
+        @endforeach
+        <div class="col-md-10 invalid-feedback">
+            {{ $errors->first('roles') }}
+        </div>
     </div>
 </div>

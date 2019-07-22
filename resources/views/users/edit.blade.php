@@ -20,7 +20,11 @@
       'message' => 'La información del usuario ha sido actualizada'
   ])
   @endcomponent
-  @component('components.form', ['title' => "Usuario: {$title}", 'col' => '10'])
+  @component('components.form', [
+      'title' => "Usuario: {$title}",
+      'col' => '10',
+      'info' => 'Los campos (*) son requeridos',
+  ])
   @if (count($errors) > 0)
     <div class="alert alert-danger">
       <strong>Oops!</strong> {{ __('messages.common_crud.error.general') }}<br><br>

@@ -121,7 +121,7 @@ class ContactController extends Controller
         }
 
         return redirect()->route('partners.show', $request->input('partner_id'))
-            ->with('success','Contacto creado exitosamente');
+            ->with('success','Contacto actualizado exitosamente');
     }
 
     /**

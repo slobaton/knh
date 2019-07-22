@@ -123,21 +123,5 @@
             </div>
         </div>
     {!! Form::close() !!}
-    <hr>
-    <h6 class="text-center">{{ __('Lista de documentos') }}</h6>
-    <hr>
-    {{-- Document list --}}
-    <table id="datatable" class="table table-striped table-bordered" style="width:100%">
-        <thead>
-          <tr>
-           <th>Nombre</th>
-           <th>Tipo</th>
-           <th>Fecha Creacion</th>
-           <th>Año</th>
-           <th>Documentos</th>
-           <th>Acciones</th>
-          </tr>
-        </thead>
-    </table>
 @endcomponent
 @endsection

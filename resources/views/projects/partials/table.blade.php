@@ -68,3 +68,7 @@
     ])
     @endcomponent
 @endsection
+
+@push('javascript')
+<script src="{{ asset('js/sweetalert/sweetalert.min.js') }}"></script>
+@endpush

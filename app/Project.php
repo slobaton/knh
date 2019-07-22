@@ -13,6 +13,7 @@ class Project extends Model
         'coordinator_phone',
         'coordinator_cellphone',
         'coordinator_email',
+        'additional_coordinator_info',
         'location',
         'city',
         'description',

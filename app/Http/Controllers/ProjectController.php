@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use DB;
+use App\Partner;
+use App\Project;
+use App\Document;
+use Carbon\Carbon;
+
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
-use App\Project;
-use App\Partner;
-use App\Document;
-
-use DB;
 
 class ProjectController extends Controller
 {
@@ -209,7 +210,7 @@ class ProjectController extends Controller
             $files = [];
 
             foreach ($request->file('files') as $file) {
-                $name=$file->getClientOriginalName();
+                $name= Carbon::now().'-'.$file->getClientOriginalName();
                 $fileName = $file->storeAs('public/documents', $name);
                 array_push($files, $fileName);
             }
