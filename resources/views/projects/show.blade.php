@@ -125,7 +125,7 @@
                     @endforeach
                 </div>
             @else
-            <p class="text-center">{{ _('No existen documentos') }}</p>
+            <p class="text-center">{{ __('No existen documentos') }}</p>
             @endif
         </div>
     </div>

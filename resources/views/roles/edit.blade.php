@@ -12,6 +12,7 @@
 @endcomponent
 
 @section('content')
+  @component('components.success_message')@endcomponent
   @component('components.form', [
       'title' => 'Formulario de edición de roles',
       'col' => '10',
@@ -34,7 +35,7 @@
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
-          <strong>Name:</strong>
+          <strong>Nombre del rol:</strong>
           {!! Form::text('name', null, array('placeholder' => 'Name','class' => "form-control {$errorName}")) !!}
           <div class="invalid-feedback">
             {{ $errors->first('name') }}
@@ -43,7 +44,7 @@
       </div>
       <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
-          <strong>Permission:</strong>
+          <strong>Permisos:</strong>
           <br/>
           <div class="row">
           @foreach($permission as $value)

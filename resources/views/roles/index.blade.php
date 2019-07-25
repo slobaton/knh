@@ -32,9 +32,9 @@
 <table id="datatable" class="table table-striped table-bordered" style="width:100%">
   <thead>
     <tr>
-     <th>No</th>
-     <th>Rol</th>
-     <th width="280px">Action</th>
+     <th>ID</th>
+     <th>Nombre del rol</th>
+     <th width="280px">Acciones</th>
     </tr>
   </thead>
 </table>
