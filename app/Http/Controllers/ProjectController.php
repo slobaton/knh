@@ -210,8 +210,7 @@ class ProjectController extends Controller
             $files = [];
 
             foreach ($request->file('files') as $file) {
-                $name= Carbon::now().'-'.$file->getClientOriginalName();
-                $fileName = $file->storeAs('public/documents', $name);
+                $fileName = $file->storeAs('public/documents', $file->getClientOriginalName());
                 array_push($files, $fileName);
             }
 
