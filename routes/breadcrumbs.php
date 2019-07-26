@@ -128,8 +128,15 @@ Breadcrumbs::for('projects.edit', function ($trail) {
         route('projects.create')
     );
 });
-Breadcrumbs::for('projects.show', function ($trail) {
+Breadcrumbs::for('projects.show', function ($trail, $project) {
     $trail->parent('projects.index');
+    $trail->push(
+        ucfirst(__('messages.projects.breadcrumbs.show')),
+        route('projects.show', $project)
+    );
+});
+Breadcrumbs::for('projects.documents', function ($trail, $project) {
+    $trail->parent('projects.show', $project);
     $trail->push(
         ucfirst(__('messages.projects.breadcrumbs.show')),
         route('projects.create')

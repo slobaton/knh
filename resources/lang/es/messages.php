@@ -1,7 +1,7 @@
 <?php
 return [
     'common_crud' => [
-        'confirm_message' => 'Está seguro de elimar el :name?',
+        'confirm_message' => 'Está seguro de eliminar el :name?',
         'delete_title' => ':name eliminado exitosamente',
         'cancel' => 'Cancelar',
         'delete' => 'Eliminar',
@@ -113,7 +113,7 @@ return [
         'project-show' => 'Ver proyecto',
     //    contact
         'contact-create' => 'Crear contacto',
-        'contact-update' => 'Actualizar contacto',
+        'contact-update' => 'Editar contacto',
         'contact-delete' => 'Eliminar contacto',
 
     ]

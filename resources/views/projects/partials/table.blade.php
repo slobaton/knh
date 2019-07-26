@@ -8,13 +8,14 @@
 @component('partials.custombreadcrumbs', [
     'icon' => 'fas fa-project-diagram',
     'title' => 'DESCRIPCIÓN DEL PROYECTO',
-    'breadcrumb' => 'projects.show'
+    'breadcrumb' => 'projects.documents',
+    'param' => $project['id']
 ])
 @endcomponent
 
 @section('content')
     <h5 class="text-center">
-        <strong>{{ __('Documentos del proyecto') }}</strong>
+        <strong>{{ __('Documentos del proyecto: ').$project['project_code'].' - '.$project['project_name'] }}</strong>
     </h5>
     <hr>
     <table id="datatable" class="table table-striped table-bordered" style="width:100%">

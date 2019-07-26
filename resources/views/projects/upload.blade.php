@@ -3,7 +3,8 @@
 @component('partials.custombreadcrumbs', [
     'icon' => 'fas fa-project-diagram',
     'title' => 'DOCUMENTOS DEL PROYECTO',
-    'breadcrumb' => 'projects.show'
+    'breadcrumb' => 'projects.show',
+    'param' => $project->id
 ])
 @endcomponent
 

@@ -50,8 +50,7 @@ class RoleController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|unique:roles,name',
-            'permission' => 'required',
+            'name' => 'required|unique:roles,name'
         ]);
 
 
@@ -60,7 +59,7 @@ class RoleController extends Controller
 
 
         return redirect()->route('roles.index')
-                        ->with('success','Rol creado exitosamente');
+            ->with('success','Rol creado exitosamente');
     }
 
     /**
@@ -111,8 +110,7 @@ class RoleController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'name' => 'required',
-            'permission' => 'required',
+            'name' => 'sometimes|unique:roles,name,'.$id,
         ]);
 
         $role = Role::find($id);

@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Project;
+use App\Document;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-
-use App\Document;
 
 class DocumentController extends Controller
 {
@@ -52,7 +53,8 @@ class DocumentController extends Controller
      */
     public function show($id)
     {
-        return view('projects.partials.table', ['id' => $id]);
+        $project = Project::findOrFail($id)->only('id', 'project_code', 'project_name');
+        return view('projects.partials.table', ['id' => $id, 'project' => $project]);
     }
 
     /**

@@ -16,13 +16,13 @@
   <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12">
       <div class="form-group">
-        <strong>Name:</strong>
+        <strong>Nombre del rol:</strong>
         {{ $role->name }}
       </div>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12">
       <div class="form-group">
-        <strong>Permissions:</strong>
+        <strong>Permisos:</strong>
         @if(!empty($rolePermissions))
         <ul>
           @foreach($rolePermissions as $value)
